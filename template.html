@@ -123,20 +123,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       your surroundings.</p>
     <image></image>
     <div class="lower_area_button">
-      <button class="harborn_button button_details" forward="allow-mdr">
-        <span>Allow access</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Allow movement & direction container -->
-  <div class="container_allow_mdr hide" id="allow-mdr">
-    <h1 class="information_title">Please allow movement & direction access</h1>
-    <p class="information_text">For this augmented reality experience we will need to use your momvement & direction
-      to track how you are moving the device.</p>
-    <image></image>
-    <div class="lower_area_button">
-      <button class="harborn_button button_details" forward="info-virtual">
+      <button class="harborn_button button_details" forward="info-virtual" id="allow-camera-btn">
         <span>Allow access</span>
       </button>
     </div>
@@ -192,7 +179,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <!-- AR view -->
 
   <div class="container_ar hide" id="ar-view">
-    <iframe src="ar.html" class="ar_view_frame"></iframe>
+    <!-- <iframe src="ar.html" class="ar_view_frame"></iframe> -->
   </div>
 
   <!-- AR not available screen -->
@@ -201,6 +188,25 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <p class="information_text">This web app is based on augmented reality and your browser does not support this
       functionality.</p>
     <p class="information_text" style="margin-top: 30px;">Please use a different browser to access this web app.</p>
+  </div>
+
+  <!-- Camera not available screen -->
+  <div class="container_camera_not_supported hide" id="camera_not_supported">
+    <h1 class="information_title">Camera is not supported</h1>
+    <p class="information_text">This web app is based on augmented reality, which has to have access to your camera. Your browser or device does not support this
+      functionality.</p>
+    <p class="information_text" style="margin-top: 30px;">Please use a different browser or device to access this web app.</p>
+  </div>
+
+  <!-- Camera denied screen -->
+  <div class="container_camera_denied hide" id="camera_denied">
+    <h1 class="information_title">Camera access got denied</h1>
+    <p class="information_text">This web app is based on augmented reality, which has to have access to your camera</p>
+    <p class="information_text" style="margin-top: 30px;">Please allow the camera access via the camera blocked icon in your browsers address bar to access this web app.</p>
+    <p class="information_text" style="margin-top: 30px; margin-bottom: 30px;">Once access is granted, continue by pressing the button below or refresh the page.</p>
+    <button class="harborn_button button_details" forward="info-virtual" id="allow-camera-btn-redo">
+      <span>I granted camera access</span>
+    </button>
   </div>
 
   <!-- Accessibility wheel -->
