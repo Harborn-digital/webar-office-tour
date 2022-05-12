@@ -1,0 +1,439 @@
+<!doctype html>
+<!--
+Copyright 2021 The Immersive Web Community Group
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+  <meta name='mobile-web-app-capable' content='yes'>
+  <meta name='apple-mobile-web-app-capable' content='yes'>
+  <link rel='icon' type='image/png' sizes='32x32' href='favicon-32x32.png'>
+  <link rel='icon' type='image/png' sizes='96x96' href='favicon-96x96.png'>
+  <!-- <link rel='stylesheet' href='css/common.css'> -->
+  <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" type="text/javascript"></script>
+
+  <!-- <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script> -->
+  <!-- <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script> -->
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+</head>
+
+<body style='margin : 0px;'>
+  <!-- Splash screen container -->
+  <div class="container_splash" id="splash">
+    <button class="accessibility_button" aria-label="Accessibility settings" forward="settings">
+      <span class="iconify" data-icon="carbon:accessibility-alt" style="color: #243282;"></span>
+    </button>
+    <h1 class="splash_title">
+      <span class="splash_title_line">Welcome to the <span class="splash_title_line_name">Harborn</span> augmented
+        reality office tour</span>
+    </h1>
+    <button class="harborn_button button_details" aria-label="Start experience" forward="allow-camera">
+      <span>Start experience</span>
+      <svg width="28" height="18" fill="#243282" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M0 9.001a1 1 0 011-1h23.586L18.292 1.71A1.001 1.001 0 1119.708.293l8 8a1 1 0 010 1.416l-8 8a1.001 1.001 0 01-1.416-1.416l6.294-6.292H1a1 1 0 01-1-1z">
+        </path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Accessibility settings container -->
+  <div class="container_accessibility_settings hide" id="settings">
+    <button class="accessibility_button" aria-label="Close accessibility settings" forward="splash">
+      <span class="iconify" data-icon="akar-icons:cross" style="color: #243282;"></span>
+    </button>
+    <div class="mini_cont_logo_title">
+      <image class="logo" alt="Harborn logo" src=<%=require("./media/images/HarbornIconTransparant.png")%> />
+        <h1 class="settings_title">
+          Accessibility
+        </h1>
+    </div>
+
+    <div class="mini_cont_settings_info">
+      <div class="mini_cont_settings_option">
+        <h2 class="settings_option_title">Colorblind mode</h2>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <p class="settings_option_text">Changes the colors used in the app to cover the most common colorblind issues.
+      </p>
+    </div>
+
+    <div class="mini_cont_settings_info">
+      <div class="mini_cont_settings_option">
+        <h2 class="settings_option_title">Brightness lens</h2>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <p class="settings_option_text">Removes shadows from virtual objects, making it bright on all sides.
+      </p>
+    </div>
+
+    <footer class="setting_footer">
+      <div class="mini_cont_settings_text">
+        <h2 class="settings_option_title" style="width: auto;">Text size</h2>
+        <div class="mini_cont_icons">
+          <span class="iconify edits" data-icon="akar-icons:minus" id="text_size_down"></span>
+          <span class="iconify edits" data-icon="codicon:text-size"></span>
+          <span class="iconify edits" data-icon="akar-icons:plus" id="text_size_up"></span>
+        </div>
+      </div>
+
+      <div class="mini_cont_settings_text">
+        <h2 class="settings_option_title" style="width: auto;">Text spacing</h2>
+        <div class="mini_cont_icons">
+          <span class="iconify edits" data-icon="akar-icons:minus" id="text_spacing_down"></span>
+          <span class="iconify edits" data-icon="fluent:text-line-spacing-20-filled"></span>
+          <span class="iconify edits" data-icon="akar-icons:plus" id="text_spacing_up"></span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Allow camera container -->
+  <div class="container_allow_camera hide" id="allow-camera">
+    <h1 class="information_title">Please allow camera access</h1>
+    <p class="information_text">For this augmented reality experience we will need to use your camera to oberserve
+      your surroundings.</p>
+    <image></image>
+    <div class="lower_area_button">
+      <button class="harborn_button button_details" forward="allow-mdr">
+        <span>Allow access</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Allow movement & direction container -->
+  <div class="container_allow_mdr hide" id="allow-mdr">
+    <h1 class="information_title">Please allow movement & direction access</h1>
+    <p class="information_text">For this augmented reality experience we will need to use your momvement & direction
+      to track how you are moving the device.</p>
+    <image></image>
+    <div class="lower_area_button">
+      <button class="harborn_button button_details" forward="info-virtual">
+        <span>Allow access</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Info virtual objects -->
+  <div class="container_info_virtual hide" id="info-virtual">
+    <h1 class="information_title">Make virtual come to life!</h1>
+    <p class="information_text">Look for this symbol in the room. Scan it and make virtual object appear on your
+      device. Learn more about Harborn this way!</p>
+    <image></image>
+    <div class="lower_area_button">
+      <button class="harborn_button button_details" forward="tutorial-main">
+        <span>Continue</span>
+        <svg width="28" height="18" fill="#243282" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M0 9.001a1 1 0 011-1h23.586L18.292 1.71A1.001 1.001 0 1119.708.293l8 8a1 1 0 010 1.416l-8 8a1.001 1.001 0 01-1.416-1.416l6.294-6.292H1a1 1 0 01-1-1z">
+          </path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Tutorial screen -->
+  <div class="container_tutorial_main hide" id="tutorial-main">
+    <h1 class="information_title">Tutorial</h1>
+    <p class="information_text">This web app has built-in accessibility features so as many people are able to
+      experience this augmented reality web app.</p>
+    <p class="information_text" style="margin-top: 30px;">This tutorial will explain how the different functions work.
+    </p>
+    <h1 class="information_title" style="padding-bottom: 40px;" id="title_change">Do you want to follow the tutorial?
+    </h1>
+
+    <button class="harborn_button button_details" forward="tutorial-start">
+      <span>Yes please!</span>
+      <svg width="28" height="18" fill="#243282" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M0 9.001a1 1 0 011-1h23.586L18.292 1.71A1.001 1.001 0 1119.708.293l8 8a1 1 0 010 1.416l-8 8a1.001 1.001 0 01-1.416-1.416l6.294-6.292H1a1 1 0 01-1-1z">
+        </path>
+      </svg>
+    </button>
+    <button class="harborn_button button_details negative_button" id="activate_ar_button" forward="ar-view"
+      style="margin-top: 40px;">
+      <span>No thank you...</span>
+      <svg width="28" height="18" fill="#243282" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M0 9.001a1 1 0 011-1h23.586L18.292 1.71A1.001 1.001 0 1119.708.293l8 8a1 1 0 010 1.416l-8 8a1.001 1.001 0 01-1.416-1.416l6.294-6.292H1a1 1 0 01-1-1z">
+        </path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- AR view -->
+
+  <div class="container_ar hide" id="ar-view">
+    <iframe src="ar.html" class="ar_view_frame"></iframe>
+  </div>
+
+  <!-- AR not available screen -->
+  <div class="container_ar_not_supported hide" id="ar_not_supported">
+    <h1 class="information_title">AR is not supported</h1>
+    <p class="information_text">This web app is based on augmented reality and your browser does not support this
+      functionality.</p>
+    <p class="information_text" style="margin-top: 30px;">Please use a different browser to access this web app.</p>
+  </div>
+
+  <!-- Accessibility wheel -->
+  <div class="container_accessibility_wheel hide" id="accessibility_wheel">
+    <p class="accessibility_selection" optionClass="captions">Captions</p>
+    <p class="accessibility_selection selected" optionClass="lock">Lock</p>
+    <p class="accessibility_selection" optionClass="magnifying">Magnifying</p>
+    <svg class="accessibility_selection_icon wheel_secondary_option" width="80" height="80" fill="#fff" version="1.1"
+      viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="m350 23.332c141.75 0 256.67 114.91 256.67 256.67s-114.91 256.67-256.67 256.67-256.67-114.91-256.67-256.67 114.91-256.67 256.67-256.67zm0 23.336c-128.87 0-233.33 104.46-233.33 233.33s104.46 233.33 233.33 233.33 233.33-104.46 233.33-233.33-104.46-233.33-233.33-233.33zm0 23.332c115.98 0 210 94.02 210 210s-94.02 210-210 210-210-94.02-210-210 94.02-210 210-210z"
+        fill-rule="evenodd" />
+    </svg>
+    <button class="accessibility_selection_button harborn_button wheel_secondary_option">Edit mode</button>
+  </div>
+
+  <!-- Tutorial text box -->
+  <div class="container_tutorial_text_box hide">
+    <div class="text_box_background">
+      <p>When you have taken a photo you can see that the screen changes. This locks the movement of the camera, but
+        not the model!</p>
+
+    </div>
+  </div>
+
+  <script type="module">
+    // import { WebXRButton } from '../js/util/webxr-button.js';
+    // import { Scene } from '../js/render/scenes/scene.js';
+    // import { Renderer, createWebGLContext } from '../js/render/core/renderer.js';
+    // import { Node } from '../js/render/core/node.js';
+    // import { Gltf2Node } from '../js/render/nodes/gltf2.js';
+    // import { DropShadowNode } from '../js/render/nodes/drop-shadow.js';
+    // import { vec3 } from '../js/render/math/gl-matrix.js';
+    // import { Ray } from '../js/render/math/ray.js';
+
+    //View controller
+    // function showView(viewName) {
+    //   $('[class*=container]').hide();
+    //   $('#' + viewName).show();
+    // }
+
+    // $('[forward]').click(function (e) {
+    //   e.preventDefault();
+    //   var viewName = $(this).attr('forward');
+    //   showView(viewName);
+    // });
+
+
+    // // XR globals.
+    // let xrButton = null;
+    // let xrRefSpace = null;
+    // let xrViewerSpace = null;
+    // let xrHitTestSource = null;
+
+    // // WebGL scene globals.
+    // let gl = null;
+    // let renderer = null;
+    // let scene = new Scene();
+    // scene.enableStats(false);
+
+    // let arObject = new Node();
+    // arObject.visible = false;
+    // scene.addNode(arObject);
+
+    // let flower = new Gltf2Node({ url: 'media/gltf/harborn/harborn_logo.gltf' });
+    // arObject.addNode(flower);
+
+    // let reticle = new Gltf2Node({ url: 'media/gltf/reticle/reticle.gltf' });
+    // reticle.visible = false;
+    // scene.addNode(reticle);
+    // let reticleHitTestResult = null;
+
+    // // Having a really simple drop shadow underneath an object helps ground
+    // // it in the world without adding much complexity.
+    // let shadow = new DropShadowNode();
+    // vec3.set(shadow.scale, 0.15, 0.15, 0.15);
+    // arObject.addNode(shadow);
+
+    // const MAX_FLOWERS = 30;
+    // let flowers = [];
+
+    // // Ensure the background is transparent for AR.
+    // scene.clear = false;
+
+    // function initXR() {
+    //   xrButton = new WebXRButton({
+    //     onRequestSession: onRequestSession,
+    //     onEndSession: onEndSession,
+    //     textEnterXRTitle: "START AR",
+    //     textXRNotFoundTitle: "AR NOT FOUND",
+    //     textExitXRTitle: "EXIT  AR",
+    //   });
+    //   document.querySelector('header').appendChild(xrButton.domElement);
+
+    //   if (navigator.xr) {
+    //     navigator.xr.isSessionSupported('immersive-ar')
+    //       .then((supported) => {
+    //         xrButton.enabled = supported;
+    //       });
+    //   }
+    // }
+
+    // function onRequestSession() {
+    //   return navigator.xr.requestSession('immersive-ar', { requiredFeatures: ['local', 'hit-test', 'anchors'] })
+    //     .then((session) => {
+    //       xrButton.setSession(session);
+    //       onSessionStarted(session);
+    //     });
+    // }
+
+    // function onSessionStarted(session) {
+    //   session.addEventListener('end', onSessionEnded);
+    //   session.addEventListener('select', onSelect);
+
+    //   if (!gl) {
+    //     gl = createWebGLContext({
+    //       xrCompatible: true
+    //     });
+
+    //     renderer = new Renderer(gl);
+
+    //     scene.setRenderer(renderer);
+    //   }
+
+    //   session.updateRenderState({ baseLayer: new XRWebGLLayer(session, gl) });
+
+    //   // In this sample we want to cast a ray straight out from the viewer's
+    //   // position and render a reticle where it intersects with a real world
+    //   // surface. To do this we first get the viewer space, then create a
+    //   // hitTestSource that tracks it.
+    //   session.requestReferenceSpace('viewer').then((refSpace) => {
+    //     xrViewerSpace = refSpace;
+    //     session.requestHitTestSource({ space: xrViewerSpace }).then((hitTestSource) => {
+    //       xrHitTestSource = hitTestSource;
+    //     });
+    //   });
+
+    //   session.requestReferenceSpace('local').then((refSpace) => {
+    //     xrRefSpace = refSpace;
+
+    //     session.requestAnimationFrame(onXRFrame);
+    //   });
+    // }
+
+    // function onEndSession(session) {
+    //   anchoredObjects.clear();
+    //   xrHitTestSource.cancel();
+    //   xrHitTestSource = null;
+    //   session.end();
+    // }
+
+    // function onSessionEnded(event) {
+    //   xrButton.setSession(null);
+    // }
+
+    // const MAX_ANCHORED_OBJECTS = 30;
+    // let anchoredObjects = [];
+    // function addAnchoredObjectsToScene(anchor) {
+    //   let flower = new Gltf2Node({ url: 'media/gltf/harborn/harborn_logo.gltf' });
+    //   console.log(flower);
+
+    //   scene.addNode(flower);
+    //   flower.rotation.z = 40;
+
+    //   anchoredObjects.push({
+    //     anchoredObject: flower,
+    //     anchor: anchor
+    //   });
+
+    //   // For performance reasons if we add too many objects start
+    //   // removing the oldest ones to keep the scene complexity
+    //   // from growing too much.
+    //   if (anchoredObjects.length > MAX_ANCHORED_OBJECTS) {
+    //     let objectToRemove = anchoredObjects.shift();
+    //     scene.removeNode(objectToRemove.anchoredObject);
+    //     objectToRemove.anchor.delete();
+    //   }
+    // }
+
+    // let rayOrigin = vec3.create();
+    // let rayDirection = vec3.create();
+    // function onSelect(event) {
+    //   if (reticle.visible) {
+    //     // Create an anchor.
+    //     reticleHitTestResult.createAnchor().then((anchor) => {
+    //       addAnchoredObjectsToScene(anchor);
+    //     }, (error) => {
+    //       console.error("Could not create anchor: " + error);
+    //     });
+    //   }
+    // }
+
+    // // Called every time a XRSession requests that a new frame be drawn.
+    // function onXRFrame(t, frame) {
+    //   let session = frame.session;
+    //   let pose = frame.getViewerPose(xrRefSpace);
+
+    //   reticle.visible = false;
+
+    //   // If we have a hit test source, get its results for the frame
+    //   // and use the pose to display a reticle in the scene.
+    //   if (xrHitTestSource && pose) {
+    //     let hitTestResults = frame.getHitTestResults(xrHitTestSource);
+    //     if (hitTestResults.length > 0) {
+    //       let pose = hitTestResults[0].getPose(xrRefSpace);
+    //       reticle.visible = true;
+    //       reticle.matrix = pose.transform.matrix;
+    //       reticleHitTestResult = hitTestResults[0];
+    //     }
+    //   }
+
+    //   for (const { anchoredObject, anchor } of anchoredObjects) {
+    //     // only update the object's position if it's still in the list
+    //     // of frame.trackedAnchors
+    //     if (!frame.trackedAnchors.has(anchor)) {
+    //       continue;
+    //     }
+    //     const anchorPose = frame.getPose(anchor.anchorSpace, xrRefSpace);
+    //     anchoredObject.matrix = anchorPose.transform.matrix;
+    //   }
+
+    //   scene.startFrame();
+
+    //   session.requestAnimationFrame(onXRFrame);
+
+    //   scene.drawXRFrame(frame, pose);
+
+    //   scene.endFrame();
+    // }
+
+    //   // Start the XR application.
+    //   // initXR();
+  </script>
+</body>
+
+</html>
