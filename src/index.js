@@ -1,8 +1,9 @@
 import './styles/main.scss';
-// import * as THREE from 'three';
-// import * as THREEx from '../js/ar-threex.js';
-// import { ARButton } from '../js/ARButton.js';
-// import { GLTFLoader } from '../js/GLTFLoader.js';
+import {
+  MediaPermissionsError,
+  MediaPermissionsErrorType,
+  requestMediaPermissions
+} from 'mic-check';
 
 //Import objects
 import Reticle from '../media/gltf/reticle/reticle.gltf';
@@ -37,15 +38,51 @@ function showView(viewName) {
   if (viewName === "tutorial-main" && !ar_support) {
     $('#ar_not_supported').show();
   }
+  if (viewName === "ar-view") {
+    addArView();
+    $('#ar-view').show();
+  }
   else {
     $('#' + viewName).show();
   }
 };
 
+function addArView(){
+  let arContainer = document.getElementById('ar-view');
+  let arFrame = document.createElement('iframe');
+  arFrame.setAttribute('src', 'ar.html');
+  arFrame.setAttribute('class', 'ar_view_frame');
+  
+  arContainer.appendChild(arFrame);
+}
+
 $('[forward]').click(function (e) {
   e.preventDefault();
-  var viewName = $(this).attr('forward');
+  console.log(this.id);
+
+  if(this.id == 'allow-camera-btn' || this.id == 'allow-camera-btn-redo'){
+    requestMediaPermissions()
+    .then(() => {
+      var viewName = $(this).attr('forward');
+      showView(viewName);
+    })
+    .catch((err) => {
+      const { type, name, message } = err;
+      if (type === MediaPermissionsErrorType.SystemPermissionDenied) {
+        showView('camera_not_supported');
+      } else if (type === MediaPermissionsErrorType.UserPermissionDenied) {
+        showView('camera_denied');
+      } else if (type === MediaPermissionsErrorType.CouldNotStartVideoSource) {
+        showView('camera_not_supported');
+      } else {
+        // not all error types are handled by this library
+      }
+    });
+  }
+  else{
+    var viewName = $(this).attr('forward');
   showView(viewName);
+  }  
 });
 
 function switchOption(element) {
