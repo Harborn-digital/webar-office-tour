@@ -92,29 +92,6 @@ $('[forward]').click(function (e) {
   }
 });
 
-function switchOption(element) {
-  element.addClass('selected').siblings().removeClass('selected');
-  var chosenOption = element.attr('optionClass');
-
-  if (chosenOption === "lock") {
-    $('.accessibility_selection_button').hide();
-    $('.accessibility_selection_icon').show();
-  }
-  else if (chosenOption === "magnifying") {
-    $('.accessibility_selection_icon').hide();
-    $('.accessibility_selection_button').show();
-  }
-  else {
-    $('.accessibility_selection_icon').hide();
-    $('.accessibility_selection_button').hide();
-  }
-}
-
-$('[class*=accessibility_selection]').click(function (e) {
-  e.preventDefault();
-  switchOption($(this));
-});
-
 $('#text_size_up').click(function (e) {
   e.preventDefault();
   if (font_size < 120) {

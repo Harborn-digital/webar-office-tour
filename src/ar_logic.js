@@ -1,27 +1,32 @@
 import './styles/ar.scss';
 
-let outlineRequested = false;
-
-if (!outlineRequested) {
-    console.log(document.getElementById('harborn_logo_gltf'));
-    document.getElementById('harborn_logo_gltf').object3D.visible = true;
-    document.getElementById('harborn_logo_outlined_gltf').object3D.visible = false;
+function toggleOutline(status){
+    if (status) {
+        document.getElementById('harborn_logo_gltf').object3D.visible = false;
+        document.getElementById('harborn_logo_outlined_gltf').object3D.visible = true;
+    } 
+    else {
+        document.getElementById('harborn_logo_gltf').object3D.visible = true;
+        document.getElementById('harborn_logo_outlined_gltf').object3D.visible = false;
+    }
 }
 
-document
-    .querySelector("#hideShow")
-    .addEventListener("click", function () {
-        if (outlineRequested) {
-            outlineRequested = false;
-            console.log(outlineRequested);
+function switchOption(element) {
+    element.addClass('selected').siblings().removeClass('selected');
+    var chosenOption = element.attr('optionClass');
 
-            document.getElementById('harborn_logo_gltf').object3D.visible = true;
-            document.getElementById('harborn_logo_outlined_gltf').object3D.visible = false;
-        } else {
-            outlineRequested = true;
-            console.log(outlineRequested);
+    if (chosenOption === "outline") {
+        toggleOutline(true);
+    }
+    if (chosenOption === "textColor") {
+        toggleOutline(false);
+    }
+    if (chosenOption === "highlight") {
+        toggleOutline(false);
+    }
+}
 
-            document.getElementById('harborn_logo_gltf').object3D.visible = false;
-            document.getElementById('harborn_logo_outlined_gltf').object3D.visible = true;
-        }
-    });
+$('[class*=accessibility_selection]').click(function (e) {
+    e.preventDefault();
+    switchOption($(this));
+});
