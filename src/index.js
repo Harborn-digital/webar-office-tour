@@ -13,15 +13,8 @@ import HarbornLogoBin from '../media/gltf/harborn/harborn_logo_fixed.bin';
 import HarbornLogoOutline from '../media/gltf/Harborn/harborn_logo_outline_fixed.gltf';
 import HarbornLogoBinOutline from '../media/gltf/harborn/harborn_logo_outline_fixed.bin';
 
-//Import AR.js elements
-import cameraDat from './camera_para.dat';
-
-//Import Textures
-
-//Global variables
-let camera, scene, renderer;
-
 let ar_support;
+let camera_access = false;
 var font_size = 100;
 var line_height_title = 46;
 var line_height_text = 30;
@@ -30,6 +23,17 @@ let logoPlaced = false;
 
 // Ar-js variables
 var arToolkitSource, arToolkitContext;
+
+navigator.mediaDevices.enumerateDevices().then(devices =>
+  devices.forEach(device => {
+    if (device.kind == 'audioinput' && device.label){
+      //
+    }
+    if (device.kind == 'videoinput' && device.label){
+      camera_access = true;
+    } 
+  }
+  ));
 
 //View controller
 function showView(viewName) {
@@ -42,17 +46,20 @@ function showView(viewName) {
     addArView();
     $('#ar-view').show();
   }
+  if (viewName === "allow-camera" && camera_access) {
+    $('#info-virtual').show();
+  }
   else {
     $('#' + viewName).show();
   }
 };
 
-function addArView(){
+function addArView() {
   let arContainer = document.getElementById('ar-view');
   let arFrame = document.createElement('iframe');
   arFrame.setAttribute('src', 'ar.html');
   arFrame.setAttribute('class', 'ar_view_frame');
-  
+
   arContainer.appendChild(arFrame);
 }
 
@@ -60,29 +67,29 @@ $('[forward]').click(function (e) {
   e.preventDefault();
   console.log(this.id);
 
-  if(this.id == 'allow-camera-btn' || this.id == 'allow-camera-btn-redo'){
+  if (this.id == 'allow-camera-btn' || this.id == 'allow-camera-btn-redo') {
     requestMediaPermissions()
-    .then(() => {
-      var viewName = $(this).attr('forward');
-      showView(viewName);
-    })
-    .catch((err) => {
-      const { type, name, message } = err;
-      if (type === MediaPermissionsErrorType.SystemPermissionDenied) {
-        showView('camera_not_supported');
-      } else if (type === MediaPermissionsErrorType.UserPermissionDenied) {
-        showView('camera_denied');
-      } else if (type === MediaPermissionsErrorType.CouldNotStartVideoSource) {
-        showView('camera_not_supported');
-      } else {
-        // not all error types are handled by this library
-      }
-    });
+      .then(() => {
+        var viewName = $(this).attr('forward');
+        showView(viewName);
+      })
+      .catch((err) => {
+        const { type, name, message } = err;
+        if (type === MediaPermissionsErrorType.SystemPermissionDenied) {
+          showView('camera_not_supported');
+        } else if (type === MediaPermissionsErrorType.UserPermissionDenied) {
+          showView('camera_denied');
+        } else if (type === MediaPermissionsErrorType.CouldNotStartVideoSource) {
+          showView('camera_not_supported');
+        } else {
+          // not all error types are handled by this library
+        }
+      });
   }
-  else{
+  else {
     var viewName = $(this).attr('forward');
-  showView(viewName);
-  }  
+    showView(viewName);
+  }
 });
 
 function switchOption(element) {
