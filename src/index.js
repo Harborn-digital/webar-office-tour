@@ -15,35 +15,50 @@ import HarbornLogoBinOutline from '../media/gltf/harborn/harborn_logo_outline_fi
 import HarbornLogoHighlight from '../media/gltf/Harborn/harborn_logo_highlight_fixed.gltf';
 import HarbornLogoBinHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.bin';
 
-let ar_support;
 let camera_access = false;
 var font_size = 100;
 var line_height_title = 46;
 var line_height_text = 30;
 
-let logoPlaced = false;
+let device_type;
 
-// Ar-js variables
-var arToolkitSource, arToolkitContext;
-
-navigator.mediaDevices.enumerateDevices().then(devices =>
-  devices.forEach(device => {
-    if (device.kind == 'audioinput' && device.label){
-      //
-    }
-    if (device.kind == 'videoinput' && device.label){
-      camera_access = true;
-    } 
+//Set device type
+function setDeviceType() {
+  let ua = navigator.userAgent;
+  if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+    device_type = "tablet";
   }
-  ));
+  else if (/Mobile|Android|iP(hone|od)|IEMobile|BlackBerry|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+    device_type = "mobile";
+  }
+  else {
+    device_type = "desktop";
+  }
+};
+
+// Check if camera access is granted
+navigator.mediaDevices.enumerateDevices()
+  .then(devices =>
+    devices.forEach(device => {
+      if (device.kind == 'audioinput' && device.label) {
+        //
+      }
+      if (device.kind == 'videoinput' && device.label) {
+        camera_access = true;
+      }
+    }
+    ));
+
+//Check if device is a desktop, show a different starting screen if so
+setDeviceType();
+if (device_type === "desktop") {
+  showView('unsupported_device');
+};
 
 //View controller
 function showView(viewName) {
   $('[class*=container]').hide();
 
-  if (viewName === "tutorial-main" && !ar_support) {
-    $('#ar_not_supported').show();
-  }
   if (viewName === "ar-view") {
     addArView();
     $('#ar-view').show();
@@ -142,13 +157,6 @@ $('#text_spacing_down').click(function (e) {
 // animate();
 
 // const loader = new GLTFLoader();
-
-if (navigator.xr) {
-  navigator.xr.isSessionSupported('immersive-ar')
-    .then((supported) => {
-      ar_support = supported;
-    });
-}
 
 // var m = document.querySelector("a-marker")
 // m.addEventListener("markerFound", (e) => {
