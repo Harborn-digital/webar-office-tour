@@ -1,3 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+$harborn-lime: #ceff27;
+$harborn-blue: #243282;
+$harborn-black: #122124;
+$harborn-light-grey: #efefef;
+$harborn-white: #fff;
+
+$font-small: 16px;
+$font-medium: 24px;
+$font-title: 32px;
+$font-splash: 57px;
+$font-wheel: 20px;
+
+$font-small: 100%;
+$font-medium: 150%;
+$font-title: 200%;
+$font-splash: 356.25%;
+$font-wheel: 125%;
+
+body {
+    background-color: $harborn-black;
+    font-family: "Space Grotesk", sans-serif;
+}
+
 .buttons {
     position: absolute;
     top: 0;
@@ -18,4 +43,57 @@
     color: black;
     width: 4em;
     height: 2em;
+}
+
+.container_accessibility_wheel {
+    background-color: $harborn-black;
+    padding: 15px 30px;
+    text-align: center;
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+        "selection selection selection"
+        "icon icon icon";
+    row-gap: 30px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    max-width: 100%;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.accessibility_selection {
+    font-size: $font-wheel;
+    font-weight: 300;
+    color: $harborn-white;
+    display: inline;
+
+    &:nth-child(1){
+        place-self: center start;
+    }
+
+    &:nth-child(3n){
+        place-self: center end;
+    }
+}
+
+.selected {
+    color: $harborn-lime;
+    font-weight: bold;
+}
+
+.accessibility_selection_icon {
+    align-self: center;
+    place-self: center;
+}
+
+.accessibility_selection_button {
+    display: none;
+}
+
+.wheel_secondary_option {
+    grid-area: icon;
 }

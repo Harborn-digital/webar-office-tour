@@ -12,6 +12,8 @@ import HarbornLogo from '../media/gltf/Harborn/harborn_logo_fixed.gltf';
 import HarbornLogoBin from '../media/gltf/harborn/harborn_logo_fixed.bin';
 import HarbornLogoOutline from '../media/gltf/Harborn/harborn_logo_outline_fixed.gltf';
 import HarbornLogoBinOutline from '../media/gltf/harborn/harborn_logo_outline_fixed.bin';
+import HarbornLogoHighlight from '../media/gltf/Harborn/harborn_logo_highlight_fixed.gltf';
+import HarbornLogoBinHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.bin';
 
 let ar_support;
 let camera_access = false;
@@ -90,29 +92,6 @@ $('[forward]').click(function (e) {
     var viewName = $(this).attr('forward');
     showView(viewName);
   }
-});
-
-function switchOption(element) {
-  element.addClass('selected').siblings().removeClass('selected');
-  var chosenOption = element.attr('optionClass');
-
-  if (chosenOption === "lock") {
-    $('.accessibility_selection_button').hide();
-    $('.accessibility_selection_icon').show();
-  }
-  else if (chosenOption === "magnifying") {
-    $('.accessibility_selection_icon').hide();
-    $('.accessibility_selection_button').show();
-  }
-  else {
-    $('.accessibility_selection_icon').hide();
-    $('.accessibility_selection_button').hide();
-  }
-}
-
-$('[class*=accessibility_selection]').click(function (e) {
-  e.preventDefault();
-  switchOption($(this));
 });
 
 $('#text_size_up').click(function (e) {
