@@ -15,7 +15,6 @@ import HarbornLogoBinOutline from '../media/gltf/harborn/harborn_logo_outline_fi
 import HarbornLogoHighlight from '../media/gltf/Harborn/harborn_logo_highlight_fixed.gltf';
 import HarbornLogoBinHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.bin';
 
-let ar_support;
 let camera_access = false;
 var font_size = 100;
 var line_height_title = 46;
@@ -41,9 +40,6 @@ navigator.mediaDevices.enumerateDevices().then(devices =>
 function showView(viewName) {
   $('[class*=container]').hide();
 
-  if (viewName === "tutorial-main" && !ar_support) {
-    $('#ar_not_supported').show();
-  }
   if (viewName === "ar-view") {
     addArView();
     $('#ar-view').show();
