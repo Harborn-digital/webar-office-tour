@@ -12,6 +12,8 @@ import HarbornLogo from '../media/gltf/Harborn/harborn_logo_fixed.gltf';
 import HarbornLogoBin from '../media/gltf/harborn/harborn_logo_fixed.bin';
 import HarbornLogoOutline from '../media/gltf/Harborn/harborn_logo_outline_fixed.gltf';
 import HarbornLogoBinOutline from '../media/gltf/harborn/harborn_logo_outline_fixed.bin';
+import HarbornLogoHighlight from '../media/gltf/Harborn/harborn_logo_highlight_fixed.gltf';
+import HarbornLogoBinHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.bin';
 
 let ar_support;
 let camera_access = false;

@@ -28,7 +28,7 @@
         <!-- <svg class="accessibility_selection_icon wheel_secondary_option" width="80" height="80" fill="#fff"
             version="1.1" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
             <path
-                d="m350 23.332c141.75 0 256.67 114.91 256.67 256.67s-114.91 256.67-256.67 256.67-256.67-114.91-256.67-256.67 114.91-256.67 256.67-256.67zm0 23.336c-128.87 0-233.33 104.46-233.33 233.33s104.46 233.33 233.33 233.33 233.33-104.46 233.33-233.33-104.46-233.33-233.33-233.33zm0 23.332c115.98 0 210 94.02 210 210s-94.02 210-210 210-210-94.02-210-210 94.02-210 210-210z"
+                d="m350 23.332c141.75 0 256.67 114.91 256.67 256.67s-11.91 256.67-256.67 256.67-256.67-114.91-256.67-256.67 114.91-256.67 256.67-256.67zm0 23.336c-128.87 0-233.33 104.46-233.33 233.33s104.46 233.33 233.33 233.33 233.33-104.46 233.33-233.33-104.46-233.33-233.33-233.33zm0 23.332c115.98 0 210 94.02 210 210s-94.02 210-210 210-210-94.02-210-210 94.02-210 210-210z"
                 fill-rule="evenodd" />
         </svg>
         <button class="accessibility_selection_button harborn_button wheel_secondary_option">Edit mode</button> -->
@@ -42,6 +42,7 @@
         <a-assets>
             <a-asset-item id="harborn_logo" src="harborn_logo_fixed.gltf"></a-asset-item>
             <a-asset-item id="harborn_logo_outlined" src="harborn_logo_outline_fixed.gltf"></a-asset-item>
+            <a-asset-item id="harborn_logo_highlighted" src="harborn_logo_highlight_fixed.gltf"></a-asset-item>
         </a-assets>
 
         <!-- handle hiro marker -->
@@ -60,6 +61,8 @@
             </a-entity>
             <a-entity id="harborn_logo_outlined_gltf" gltf-model="#harborn_logo_outlined" position="0 0.5 -1.5"
                 rotation="0 90 90" visible="false"></a-entity>
+            <a-entity id="harborn_logo_highlighted_gltf" gltf-model="#harborn_logo_highlighted" position="0 0.5 -1.5"
+                rotation="90 90 90" visible="false"></a-entity>
         </a-marker>
 
         <!-- handle kanji marker -->

@@ -47,7 +47,7 @@ body {
 
 .container_accessibility_wheel {
     background-color: $harborn-black;
-    padding: 15px 20px;
+    padding: 15px 30px;
     text-align: center;
     place-items: center;
     display: grid;
@@ -70,7 +70,14 @@ body {
     font-weight: 300;
     color: $harborn-white;
     display: inline;
-    word-spacing: 20px;
+
+    &:nth-child(1){
+        place-self: center start;
+    }
+
+    &:nth-child(3n){
+        place-self: center end;
+    }
 }
 
 .selected {
