@@ -53,6 +53,8 @@
             <img id="harborn_post_bouw" src=<%=require("./media/images/post-bouw.jpg")%>>
             <img id="harborn_band" src=<%=require("./media/images/harborn_band.jpg")%>>
             <img id="harborn_come_together" src=<%=require("./media/images/come_together.jpg")%>>
+            <img id="harborn_focus_wide" src=<%=require("./media/images/focus_wide.jpg")%>>
+            <img id="harborn_focus_zoom" src=<%=require("./media/images/focus_zoom.jpg")%>>
         </a-assets>
 
         <!-- handle hiro marker -->
@@ -135,6 +137,30 @@
                 </a-text>
                 <a-text
                     value="The Harborn garden is designed to bring people together. \n\nAt Harborn we believe in the importance of a good mindspace and relationship with colleges. \n\nNext to this the garden is the perfect place to hold events and give presentations. \n\nThis is also the place where the Harborn band plays to entertain everyone! "
+                    color="white" align="left" width="2.8" position="-1.4 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+        </a-marker>
+
+        <!-- Focus area info marker -->
+        <a-marker type='barcode' value='55' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <!-- Harborn band -->
+            <a-image src="#harborn_focus_wide" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Come together -->
+            <a-image src="#harborn_focus_zoom" height="3" width="3" position="2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Text information -->
+            <a-plane height="1.5" width="3" position="0 0 1" rotation="-90 0 0" color="#122124">
+                <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="The focus area" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+                <a-text
+                    value="From the busy Garden you can move to the back of the building. Welcome to the Focus Area. \n\nThis is the space where a few dozen people can work and focus on their tasks. \n\nAll screens are provided with a USB-C cable for easy plug and go capabilities. This way you can simply work anywhere you want."
                     color="white" align="left" width="2.8" position="-1.4 0 0.2"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
