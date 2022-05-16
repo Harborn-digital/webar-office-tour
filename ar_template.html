@@ -40,9 +40,13 @@
         vr-mode-ui="enabled: false">
 
         <a-assets>
+            <!-- GLTF Items -->
             <a-asset-item id="harborn_logo" src="harborn_logo_fixed.gltf"></a-asset-item>
             <a-asset-item id="harborn_logo_outlined" src="harborn_logo_outline_fixed.gltf"></a-asset-item>
             <a-asset-item id="harborn_logo_highlighted" src="harborn_logo_highlight_fixed.gltf"></a-asset-item>
+
+            <!-- Images -->
+            <img id="harborn_garage" src=<%=require("./media/images/Garage.jpg")%>>
         </a-assets>
 
         <!-- handle hiro marker -->
@@ -50,13 +54,29 @@
             <a-entity gltf-model="#harborn_logo" position="0 0.5 0" rotation="90 0 90"></a-entity>
         </a-marker>
 
-        <!-- handle matrix marker -->
-        <a-marker type='barcode' value='18'>
-            <!-- <a-entity gltf-model="#harborn_logo_outlined" position="0 0.5 -1.5" rotation="0 90 90"></a-entity> -->
+        <!-- Garage info marker -->
+        <a-marker type='barcode' value='18' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <!-- <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal"
+                component-padding="0.1" opacity="0.7" width="3.5" height="4.5" panel-color="#072B73" panel-rounded="0.2"
+                position="0 2.5 -6" rotation="0 0 0">
+                <a-text>This is the Harborn Garage. Inspired by the way of working from Silicon Valley.</a-text>
+            </a-gui-flex-container> -->
+            <a-image src="#harborn_garage" height="3" width="3" position="0 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="0.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <a-plane height="1.5" width="3" position="0 0 1" rotation="-90 0 0" color="#122124">
+                <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text
+                    value="The garage"
+                    color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2" font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt"></a-text>
+                <a-text
+                    value="This is the Harborn Garage. Inspired by the way of working from Silicon Valley.\n\nThis office space is designed as a place to come up with new kinds of ideas. Perfect for brainstorm sessions with Harborn's clients. \n\nIt's also available for epic games of table tennis in the lunch breaks for nice teambuilding!"
+                    color="white" align="left" width="2.8" position="-1.4 0 0.2" font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt"></a-text>
+            </a-plane>
         </a-marker>
 
-        <!-- handle matrix marker -->
-        <a-marker type='barcode' value='17'>
+        <!-- Harborn logo marker -->
+        <a-marker type='barcode' value='17' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
             <a-entity id="harborn_logo_gltf" gltf-model="#harborn_logo" position="0 0.5 -1.5" rotation="0 90 90">
             </a-entity>
             <a-entity id="harborn_logo_outlined_gltf" gltf-model="#harborn_logo_outlined" position="0 0.5 -1.5"
