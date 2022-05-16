@@ -47,9 +47,12 @@
 
             <!-- Images -->
             <img id="harborn_garage" src=<%=require("./media/images/Garage.jpg")%>>
+            <img id="harborn_garage_brainstorm" src=<%=require("./media/images/brainstorm.jpg")%>>
             <img id="harborn_pre_bouw" src=<%=require("./media/images/pre-bouw.jpg")%>>
             <img id="harborn_during_bouw" src=<%=require("./media/images/during-bouw.jpg")%>>
             <img id="harborn_post_bouw" src=<%=require("./media/images/post-bouw.jpg")%>>
+            <img id="harborn_band" src=<%=require("./media/images/harborn_band.jpg")%>>
+            <img id="harborn_come_together" src=<%=require("./media/images/come_together.jpg")%>>
         </a-assets>
 
         <!-- handle hiro marker -->
@@ -57,11 +60,17 @@
             <a-entity gltf-model="#harborn_logo" position="0 0.5 0" rotation="90 0 90"></a-entity>
         </a-marker>
 
-        <!-- Garage info marker -->
+        <!-- The garage info marker -->
         <a-marker type='barcode' value='18' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
-            <a-image src="#harborn_garage" height="3" width="3" position="0 0 -1.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="0.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- Clear room -->
+            <a-image src="#harborn_garage" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
 
+            <!-- Brainstorming -->
+            <a-image src="#harborn_garage_brainstorm" height="3" width="3" position="2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Text information -->
             <a-plane height="1.5" width="3" position="0 0 1" rotation="-90 0 0" color="#122124">
                 <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
                 <a-text value="The garage" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2"
@@ -103,6 +112,30 @@
             <a-plane height="0.5" width="1.5" position="2 0.5 3" rotation="-90 0 0" color="#122124">
                 <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane>
                 <a-text value="After" color="#CEFF27" align="left" width="3.5" position="-0.65 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+        </a-marker>
+
+        <!-- The garden info marker -->
+        <a-marker type='barcode' value='24' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <!-- Harborn band -->
+            <a-image src="#harborn_band" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Come together -->
+            <a-image src="#harborn_come_together" height="3" width="3" position="2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Text information -->
+            <a-plane height="2" width="3" position="0 0 1.5" rotation="-90 0 0" color="#122124">
+                <a-plane height="2" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="The garden" color="#CEFF27" align="left" width="3.5" position="-1.4 0.9 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+                <a-text
+                    value="The Harborn garden is designed to bring people together. \n\nAt Harborn we believe in the importance of a good mindspace and relationship with colleges. \n\nNext to this the garden is the perfect place to hold events and give presentations. \n\nThis is also the place where the Harborn band plays to entertain everyone! "
+                    color="white" align="left" width="2.8" position="-1.4 0 0.2"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
             </a-plane>
