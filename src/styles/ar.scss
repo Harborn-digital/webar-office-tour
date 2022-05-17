@@ -5,6 +5,8 @@ $harborn-blue: #243282;
 $harborn-black: #122124;
 $harborn-light-grey: #efefef;
 $harborn-white: #fff;
+$harborn-beige: #e0dbc7;
+$harborn-greyblue: #a3c2c4;
 
 $font-small: 16px;
 $font-medium: 24px;
@@ -55,7 +57,7 @@ body {
     grid-template-areas:
         "selection selection selection"
         "icon icon icon";
-    row-gap: 30px;
+    row-gap: 0px;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -94,6 +96,29 @@ body {
     display: none;
 }
 
-.wheel_secondary_option {
-    grid-area: icon;
+// .wheel_secondary_option {
+//     grid-area: icon;
+// }
+
+.accessibility_color{
+    height: 70px;
+    width: 100px;
+    border: 1px solid $harborn-lime;
+}
+
+.greyblue{
+    background-color: $harborn-greyblue;
+}
+
+.white{
+    background-color: $harborn-light-grey;
+}
+
+.lime{
+    background-color: $harborn-lime;
+}
+
+.active{
+    outline: 2px solid white;
+    outline-offset: 5px;
 }
