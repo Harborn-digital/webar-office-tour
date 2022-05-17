@@ -17,7 +17,7 @@ function toggleOutline(status) {
 function toggleHighlight(status) {
     let element = document.querySelector('#harborn_logo_gltf');
     let elementHighlight = document.querySelector('#harborn_logo_highlighted_gltf');
-    
+
     if (status) {
         element.object3D.visible = false;
         elementHighlight.object3D.visible = true;
@@ -41,19 +41,44 @@ function switchOption(element) {
 
         toggleHighlight(false);
         // removeInterval();
+
+        // Hide color options
+        $('[class*=accessibility_color]').hide();
     }
     if (chosenOption === "textColor") {
         toggleOutline(false);
 
         toggleHighlight(false);
         // removeInterval();
+
+        // Show color options
+        $('[class*=accessibility_color]').show();
     }
     if (chosenOption === "highlight") {
         toggleOutline(false);
 
         toggleHighlight(true);
+
+        // Hide color options
+        $('[class*=accessibility_color]').hide();
     }
 }
+
+function switchColors(element) {
+    element.addClass('active').siblings().removeClass('active');
+    var chosenColor = element.attr('chosenColor');
+
+    $('a-text').each(function () {
+        if ($(this).attr('isTitle') !== "true") {
+            $(this).attr('color', chosenColor);
+        }
+    })
+}
+
+$('[class*=accessibility_color]').click(function (e) {
+    e.preventDefault();
+    switchColors($(this));
+});
 
 $('[class*=accessibility_selection]').click(function (e) {
     e.preventDefault();

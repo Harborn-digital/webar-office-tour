@@ -13,7 +13,7 @@
 
     <!-- include aframe-ar.js -->
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-<script defer src="secondary1e612065ee40a508bd23.js"></script></head>
+<script defer src="secondaryf35e33ac970e84eb3b3a.js"></script></head>
 
 <body style="margin: 0; overflow: hidden;">
     <!-- Accessibility wheel -->
@@ -21,9 +21,9 @@
         <p class="accessibility_selection" optionClass="outline">Outline</p>
         <p class="accessibility_selection selected" optionClass="textColor">Text color</p>
         <p class="accessibility_selection" optionClass="highlight">Highlight</p>
-        <div class="accessibility_selection_color white wheel_secondary_option"></div>
-        <div class="accessibility_selection_color black wheel_secondary_option"></div>
-        <div class="accessibility_selection_color lime wheel_secondary_option"></div>
+        <div class="accessibility_selection_color white wheel_secondary_option active" chosenColor="white"></div>
+        <div class="accessibility_selection_color black wheel_secondary_option" chosenColor="black"></div>
+        <div class="accessibility_selection_color lime wheel_secondary_option" chosenColor="#ceff27"></div>
 
         <!-- <svg class="accessibility_selection_icon wheel_secondary_option" width="80" height="80" fill="#fff"
             version="1.1" viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
@@ -47,6 +47,16 @@
 
             <!-- Images -->
             <img id="harborn_garage" src=f60832c616ffb82fb5c3.jpg>
+            <img id="harborn_garage_brainstorm" src=f5dca689606e13f60389.jpg>
+            <img id="harborn_pre_bouw" src=2b03508f32b064e75c07.jpg>
+            <img id="harborn_during_bouw" src=ceef273e855cf1c0ab7b.jpg>
+            <img id="harborn_post_bouw" src=95e5a15fbf654568ad6e.jpg>
+            <img id="harborn_band" src=040afa97377e2670d0f1.jpg>
+            <img id="harborn_come_together" src=da14beef4fd854535bea.jpg>
+            <img id="harborn_focus_wide" src=bc7d95054b6a546006c4.jpg>
+            <img id="harborn_focus_zoom" src=d68a8ef9b6655b505590.jpg>
+            <img id="CH_logo" src=6050cf9d1412a4a2ffe8.png>
+            <img id="harborn_logo_full" src=35be28894b3cae09f56e.png>
         </a-assets>
 
         <!-- handle hiro marker -->
@@ -54,21 +64,138 @@
             <a-entity gltf-model="#harborn_logo" position="0 0.5 0" rotation="90 0 90"></a-entity>
         </a-marker>
 
-        <!-- handle matrix marker -->
-        <a-marker type='barcode' value='18'>
-            <!-- <a-gui-flex-container flex-direction="column" justify-content="center" align-items="normal"
-                component-padding="0.1" opacity="0.7" width="3.5" height="4.5" panel-color="#072B73" panel-rounded="0.2"
-                position="0 2.5 -6" rotation="0 0 0">
-                <a-text>This is the Harborn Garage. Inspired by the way of working from Silicon Valley.</a-text>
-            </a-gui-flex-container> -->
-            <a-image src="#harborn_garage"></a-image>
-            <a-plane>
-                <a-text>This is the Harborn Garage. Inspired by the way of working from Silicon Valley.</a-text>
+        <!-- The garage info marker -->
+        <a-marker type='barcode' value='18' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <!-- Clear room -->
+            <a-image src="#harborn_garage" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Brainstorming -->
+            <a-image src="#harborn_garage_brainstorm" height="3" width="3" position="2 0 -1.5" rotation="-90 0 0">
+            </a-image>
+            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Text information -->
+            <a-plane height="1.5" width="3" position="0 0 1" rotation="-90 0 0" color="#122124">
+                <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="The garage" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+                <a-text
+                    value="This is the Harborn Garage. Inspired by the way of working from Silicon Valley.\n\nThis office space is designed as a place to come up with new kinds of ideas. Perfect for brainstorm sessions with Harborn's clients. \n\nIt's also available for epic games of table tennis in the lunch breaks for nice teambuilding!"
+                    color="white" align="left" width="2.8" position="-1.4 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
             </a-plane>
         </a-marker>
 
-        <!-- handle matrix marker -->
-        <a-marker type='barcode' value='17'>
+        <!-- Renovation info marker -->
+        <a-marker type='barcode' value='39' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <!-- Pre renovation -->
+            <a-image src="#harborn_pre_bouw" height="3" width="3" position="0 0 -2.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="0.1 -0.25 -2.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <a-plane height="0.5" width="1.5" position="0 0.5 -1" rotation="-90 0 0" color="#122124">
+                <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="Before" color="#CEFF27" align="left" width="3.5" position="-0.65 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+
+            <!-- During renovation -->
+            <a-image src="#harborn_during_bouw" height="3" width="3" position="-2 0 1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="-1.9 -0.25 1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <a-plane height="0.5" width="1.5" position="-2 0.5 3" rotation="-90 0 0" color="#122124">
+                <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="During" color="#CEFF27" align="left" width="3.5" position="-0.65 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+
+            <!-- After renovation -->
+            <a-image src="#harborn_post_bouw" height="3" width="3" position="2 0 1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="2.1 -0.25 1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <a-plane height="0.5" width="1.5" position="2 0.5 3" rotation="-90 0 0" color="#122124">
+                <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="After" color="#CEFF27" align="left" width="3.5" position="-0.65 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+        </a-marker>
+
+        <!-- The garden info marker -->
+        <a-marker type='barcode' value='24' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <!-- Harborn band -->
+            <a-image src="#harborn_band" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Come together -->
+            <a-image src="#harborn_come_together" height="3" width="3" position="2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Text information -->
+            <a-plane height="2" width="3" position="0 0 1.5" rotation="-90 0 0" color="#122124">
+                <a-plane height="2" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="The garden" color="#CEFF27" align="left" width="3.5" position="-1.4 0.9 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+                <a-text
+                    value="The Harborn garden is designed to bring people together. \n\nAt Harborn we believe in the importance of a good mindspace and relationship with colleges. \n\nNext to this the garden is the perfect place to hold events and give presentations. \n\nThis is also the place where the Harborn band plays to entertain everyone! "
+                    color="white" align="left" width="2.8" position="-1.4 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+        </a-marker>
+
+        <!-- Focus area info marker -->
+        <a-marker type='barcode' value='55' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <!-- Harborn band -->
+            <a-image src="#harborn_focus_wide" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Come together -->
+            <a-image src="#harborn_focus_zoom" height="3" width="3" position="2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Text information -->
+            <a-plane height="1.5" width="3" position="0 0 1" rotation="-90 0 0" color="#122124">
+                <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="The focus area" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+                <a-text
+                    value="From the busy Garden you can move to the back of the building. Welcome to the Focus Area. \n\nThis is the space where a few dozen people can work and focus on their tasks. \n\nAll screens are provided with a USB-C cable for easy plug and go capabilities. This way you can simply work anywhere you want."
+                    color="white" align="left" width="2.8" position="-1.4 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+        </a-marker>
+
+        <!-- Rebranding info marker -->
+        <a-marker type='barcode' value='6' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <!-- Harborn band -->
+            <a-image src="#CH_logo" height="3" width="1.5" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Come together -->
+            <a-image src="#harborn_logo_full" height="1.5" width="3" position="2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Text information -->
+            <a-plane height="2.5" width="3" position="0 0 2" rotation="-90 0 0" color="#122124">
+                <a-plane height="2.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="The rebranding" color="#CEFF27" align="left" width="3.5" position="-1.4 1.15 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+                <a-text
+                    value="At the beginning of 2022, the doors of the new office space opened up. \n\nTogether with this new office, Connect Holland rebranded to the now known Harborn. \n\nAs this company is always continuing to develop, so did they in their name. \n\nHarborn is inspired by terms as 'herboren' and 'harbor'. Herboren being the Dutch word for being reborn and harbor as Harborn is located in Rotterdam, one of the biggest harbors in the Netherlands."
+                    color="white" align="left" width="2.8" position="-1.4 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+        </a-marker>
+
+        <!-- Harborn logo marker -->
+        <a-marker type='barcode' value='17' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
             <a-entity id="harborn_logo_gltf" gltf-model="#harborn_logo" position="0 0.5 -1.5" rotation="0 90 90">
             </a-entity>
             <a-entity id="harborn_logo_outlined_gltf" gltf-model="#harborn_logo_outlined" position="0 0.5 -1.5"

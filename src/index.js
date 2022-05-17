@@ -78,13 +78,13 @@ function addArView() {
   let arFrame = document.createElement('iframe');
   arFrame.setAttribute('src', 'ar.html');
   arFrame.setAttribute('class', 'ar_view_frame');
+  arFrame.frameBorder = 0;
 
   arContainer.appendChild(arFrame);
 }
 
 $('[forward]').click(function (e) {
   e.preventDefault();
-  console.log(this.id);
 
   if (this.id == 'allow-camera-btn' || this.id == 'allow-camera-btn-redo') {
     requestMediaPermissions()
@@ -116,7 +116,7 @@ $('#text_size_up').click(function (e) {
   if (font_size < 120) {
     font_size += 5;
   }
-  console.log(String(font_size));
+  // console.log(String(font_size));
   document.body.style.fontSize = String(font_size) + "%";
 });
 
@@ -125,7 +125,7 @@ $('#text_size_down').click(function (e) {
   if (font_size > 100) {
     font_size -= 5;
   }
-  console.log(String(font_size));
+  // console.log(String(font_size));
   document.body.style.fontSize = String(font_size) + "%";
 });
 
