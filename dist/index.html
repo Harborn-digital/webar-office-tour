@@ -37,7 +37,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <title>
     Harborn AR Office Tour
   </title>
-<script defer src="mainacbab1f39de42458fc3f.js"></script></head>
+<script defer src="main2590ba78305b8b0695fc.js"></script><script defer src="secondary1e612065ee40a508bd23.js"></script></head>
 
 <body style='margin : 0px;'>
   <!-- Splash screen container -->
@@ -123,20 +123,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       your surroundings.</p>
     <image></image>
     <div class="lower_area_button">
-      <button class="harborn_button button_details" forward="allow-mdr">
-        <span>Allow access</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Allow movement & direction container -->
-  <div class="container_allow_mdr hide" id="allow-mdr">
-    <h1 class="information_title">Please allow movement & direction access</h1>
-    <p class="information_text">For this augmented reality experience we will need to use your momvement & direction
-      to track how you are moving the device.</p>
-    <image></image>
-    <div class="lower_area_button">
-      <button class="harborn_button button_details" forward="info-virtual">
+      <button class="harborn_button button_details" forward="info-virtual" id="allow-camera-btn">
         <span>Allow access</span>
       </button>
     </div>
@@ -191,46 +178,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
   <!-- AR view -->
 
-  <div class="container_ar" id="ar-view"></div>
-
-  <!-- <div class="container_ar hide" id="ar-view"> -->
-  <!-- <a-scene embedded arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'
-    vr-mode-ui="enabled: false">
-
-    <a-assets>
-      <a-asset-item id="harborn_logo" src="harborn_logo_fixed.gltf"></a-asset-item>
-      <a-asset-item id="harborn_logo_outlined" src="harborn_logo_outline_fixed.gltf"></a-asset-item>
-    </a-assets> -->
-
-    <!-- handle hiro marker -->
-    <!-- <a-marker preset='hiro'>
-      <a-entity gltf-model="#harborn_logo" position="0 0.5 0" rotation="90 0 90"></a-entity>
-    </a-marker> -->
-
-    <!-- handle matrix marker -->
-    <!-- <a-marker type='barcode' value='18'> -->
-      <!-- <a-entity gltf-model="#harborn_logo_outlined" position="0 0.5 -1.5" rotation="0 90 90"></a-entity> -->
-    <!-- </a-marker> -->
-
-    <!-- handle matrix marker -->
-    <!-- <a-marker type='barcode' value='17'>
-      <a-entity id="harborn_logo_gltf" gltf-model="#harborn_logo" position="0 0.5 -1.5" rotation="0 90 90"></a-entity>
-      <a-entity id="harborn_logo_outlined_gltf" gltf-model="#harborn_logo_outlined" position="0 0.5 -1.5" rotation="0 90 90"></a-entity>
-    </a-marker> -->
-
-    <!-- handle kanji marker -->
-    <!-- <a-marker preset='kanji'>
-      <a-box position='0 0.5 0' material='opacity: 0.5; side: double;color:green;'>
-        <a-torus-knot radius='0.26' radius-tubular='0.05'
-          animation="property: rotation; to:360 0 0; dur: 5000; easing: linear; loop: true">
-        </a-torus-knot>
-      </a-box>
-    </a-marker> -->
-
-    <!-- add a simple camera -->
-    <!-- <a-entity id='userCamera' camera>
-    </a-entity>
-  </a-scene> -->
+  <div class="container_ar hide" id="ar-view">
+    <!-- <iframe src="ar.html" class="ar_view_frame"></iframe> -->
+  </div>
 
   <!-- AR not available screen -->
   <div class="container_ar_not_supported hide" id="ar_not_supported">
@@ -240,18 +190,31 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     <p class="information_text" style="margin-top: 30px;">Please use a different browser to access this web app.</p>
   </div>
 
-  <!-- Accessibility wheel -->
-  <div class="container_accessibility_wheel hide" id="accessibility_wheel">
-    <p class="accessibility_selection" optionClass="captions">Captions</p>
-    <p class="accessibility_selection selected" optionClass="lock">Lock</p>
-    <p class="accessibility_selection" optionClass="magnifying">Magnifying</p>
-    <svg class="accessibility_selection_icon wheel_secondary_option" width="80" height="80" fill="#fff" version="1.1"
-      viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="m350 23.332c141.75 0 256.67 114.91 256.67 256.67s-114.91 256.67-256.67 256.67-256.67-114.91-256.67-256.67 114.91-256.67 256.67-256.67zm0 23.336c-128.87 0-233.33 104.46-233.33 233.33s104.46 233.33 233.33 233.33 233.33-104.46 233.33-233.33-104.46-233.33-233.33-233.33zm0 23.332c115.98 0 210 94.02 210 210s-94.02 210-210 210-210-94.02-210-210 94.02-210 210-210z"
-        fill-rule="evenodd" />
-    </svg>
-    <button class="accessibility_selection_button harborn_button wheel_secondary_option">Edit mode</button>
+  <!-- Camera not available screen -->
+  <div class="container_camera_not_supported hide" id="camera_not_supported">
+    <h1 class="information_title">Camera is not supported</h1>
+    <p class="information_text">This web app is based on augmented reality, which has to have access to your camera. Your browser or device does not support this
+      functionality.</p>
+    <p class="information_text" style="margin-top: 30px;">Please use a different browser or device to access this web app.</p>
+  </div>
+
+  <!-- Camera denied screen -->
+  <div class="container_camera_denied hide" id="camera_denied">
+    <h1 class="information_title">Camera access got denied</h1>
+    <p class="information_text">This web app is based on augmented reality, which has to have access to your camera</p>
+    <p class="information_text" style="margin-top: 30px;">Please allow the camera access via the camera blocked icon in your browsers address bar to access this web app.</p>
+    <p class="information_text" style="margin-top: 30px; margin-bottom: 30px;">Once access is granted, continue by pressing the button below or refresh the page.</p>
+    <button class="harborn_button button_details" forward="info-virtual" id="allow-camera-btn-redo">
+      <span>I granted camera access</span>
+    </button>
+  </div>
+
+  <!-- Unsupported device screen -->
+  <div class="container_unsupported_device hide" id="unsupported_device">
+    <h1 class="information_title">This device is not supported</h1>
+    <p class="information_text">Sorry for the inconvenience, but this web app is not supported for this device.</p>
+    <p class="information_text" style="margin-top: 30px;">Please use your smartphone or tablet to visit this webpage.</p>
+    <p class="information_text" style="margin-top: 30px; margin-bottom: 30px;">This way you can experience the office tour in the way it was intented. Thank you!</p>
   </div>
 
   <!-- Tutorial text box -->

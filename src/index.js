@@ -15,6 +15,8 @@ import HarbornLogoBinOutline from '../media/gltf/harborn/harborn_logo_outline_fi
 import HarbornLogoHighlight from '../media/gltf/Harborn/harborn_logo_highlight_fixed.gltf';
 import HarbornLogoBinHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.bin';
 
+// Import images
+
 let camera_access = false;
 var font_size = 100;
 var line_height_title = 46;
