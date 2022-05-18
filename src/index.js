@@ -16,6 +16,10 @@ import HarbornLogoHighlight from '../media/gltf/Harborn/harborn_logo_highlight_f
 import HarbornLogoBinHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.bin';
 
 // Import images
+import HarbornLogoQR from '../media/images/QR-circle-Harborn-Logo.png';
+import HarbornLogoImage from '../media/images/HarbornIconTransparant.png';
+import HarbornLogoImageRed from '../media/images/HarbornIconTransparantRed.png';
+import HarbornLogoImageOutlined from '../media/images/HarbornIconTransparentOutlined.png';
 
 let camera_access = false;
 var font_size = 100;
@@ -23,6 +27,20 @@ var line_height_title = 46;
 var line_height_text = 30;
 
 let device_type;
+
+let tutorialStep = 0;
+let tutorialText = [
+  'Welcome to the Harborn Office Tour Experience, in which you will learn more about Harborn and their projects.',
+  'You will use your camera to scan the markers like above.',
+  'When the camera successfully recognized the QR code it will load the corresponding virtual model',
+  'There the model has loaded! Now we can look at the three built in accessibility features.',
+  'First off we have the text color mode, which allows you to choose between three different colors. This will change all text to that color! This way you can adjust it to fit best to your preference.',
+  'Next we have the highlight feature!',
+  'As you can see it highlights the virtual object. It will do this with all virtual objects that can be interacted with. This way the difference between the real and virtual world can be clarified and interactables can be highlighted.',
+  'Our last feature is the outline feature!',
+  'This feature works similar to the highlight feature. Only this one outlines all special virtual objects. This way the shape of the object can be made extra clear!',
+  'This was it for the tutorial. Enjoy the augmented reality experience and learn more about Harborn!',
+]
 
 //Set device type
 function setDeviceType() {
@@ -83,6 +101,59 @@ function addArView() {
   arContainer.appendChild(arFrame);
 }
 
+function startTutorial(stap) {
+  let tekstElement = $('#tutorial-text');
+  let imageElement = $('#tutorial-image');
+  switch (stap) {
+    case 1:
+      tekstElement.text(tutorialText[0]);
+      break;
+    case 2:
+      tekstElement.text(tutorialText[1]);
+      imageElement.attr('src', HarbornLogoQR);
+      break;
+    case 3:
+      tekstElement.text(tutorialText[2]);
+      break;
+    case 4:
+      tekstElement.text(tutorialText[3]);
+      imageElement.attr('src', HarbornLogoImage);
+      break;
+    case 5:
+      tekstElement.text(tutorialText[4]);
+      break;
+    case 6:
+      tekstElement.text(tutorialText[5]);
+      $('#highlight-tutorial').removeClass('inactive_tutorial');
+      break;
+    case 7:
+      tekstElement.text(tutorialText[6]);
+      $('#highlight-tutorial').addClass('selected_tutorial');
+      $('#text-color-tutorial').removeClass('selected_tutorial');
+      $('#text-color-tutorial').addClass('inactive_tutorial');
+      $('[class*=accessibility_color]').hide();
+      imageElement.attr('src', HarbornLogoImageRed);
+      break;
+    case 8:
+      tekstElement.text(tutorialText[7]);
+      $('#outline-tutorial').removeClass('inactive_tutorial');
+      break;
+    case 9:
+      tekstElement.text(tutorialText[8]);
+      $('#outline-tutorial').addClass('selected_tutorial');
+      $('#highlight-tutorial').removeClass('selected_tutorial');
+      $('#highlight-tutorial').addClass('inactive_tutorial');
+      imageElement.attr('src', HarbornLogoImageOutlined);
+      break;
+    case 10:
+      tekstElement.text(tutorialText[9]);
+      break;
+    case 11:
+      showView("ar-view");
+  }
+
+}
+
 $('[forward]').click(function (e) {
   e.preventDefault();
 
@@ -104,6 +175,14 @@ $('[forward]').click(function (e) {
           // not all error types are handled by this library
         }
       });
+  }
+  if ($(this).attr('forward') === "tutorial-start") {
+    var viewName = $(this).attr('forward');
+    showView(viewName);
+    document.body.addEventListener('click', function () {
+      tutorialStep += 1;
+      startTutorial(tutorialStep)
+    });
   }
   else {
     var viewName = $(this).attr('forward');
