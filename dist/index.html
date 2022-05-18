@@ -37,7 +37,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <title>
     Harborn AR Office Tour
   </title>
-<script defer src="mainae6aa73e550db9565112.js"></script><script defer src="secondaryf35e33ac970e84eb3b3a.js"></script></head>
+<script defer src="main96f9578af392f5adc5cd.js"></script><script defer src="secondary108d08ec49c9df82fbee.js"></script></head>
 
 <body style='margin : 0px;'>
   <!-- Splash screen container -->
@@ -177,9 +177,33 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   </div>
 
   <!-- AR view -->
-
   <div class="container_ar hide" id="ar-view">
     <!-- <iframe src="ar.html" class="ar_view_frame"></iframe> -->
+  </div>
+
+  <!-- Tutorial loop -->
+  <div class="container_tutorial_loop hide" id="tutorial-start">
+
+    <div class="bottom_view">
+      <!-- Text box -->
+      <div class="tutorial_text_box">
+        <p>Welcome to the Harborn Office Tour Experience, in which you will learn more about Harborn and their projects.
+        </p>
+      </div>
+
+      <!-- Accessibility wheel -->
+      <div class="accessibility_wheel" id="accessibility_wheel">
+        <p class="accessibility_selection" optionClass="outline">Outline</p>
+        <p class="accessibility_selection selected" optionClass="textColor">Text color</p>
+        <p class="accessibility_selection" optionClass="highlight">Highlight</p>
+        <div class="accessibility_color greyblue wheel_secondary_option" chosenColor="#a3c2c4"></div>
+        <div class="accessibility_color white wheel_secondary_option active" chosenColor="#efefef"></div>
+        <div class="accessibility_color lime wheel_secondary_option" chosenColor="#ceff27"></div>
+      </div>
+    </div>
+
+
+    <image class="tutorial_image" id="tutorial-image" src=91272acca3d1aaffeb20.png></image>
   </div>
 
   <!-- AR not available screen -->
@@ -193,17 +217,21 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <!-- Camera not available screen -->
   <div class="container_camera_not_supported hide" id="camera_not_supported">
     <h1 class="information_title">Camera is not supported</h1>
-    <p class="information_text">This web app is based on augmented reality, which has to have access to your camera. Your browser or device does not support this
+    <p class="information_text">This web app is based on augmented reality, which has to have access to your camera.
+      Your browser or device does not support this
       functionality.</p>
-    <p class="information_text" style="margin-top: 30px;">Please use a different browser or device to access this web app.</p>
+    <p class="information_text" style="margin-top: 30px;">Please use a different browser or device to access this web
+      app.</p>
   </div>
 
   <!-- Camera denied screen -->
   <div class="container_camera_denied hide" id="camera_denied">
     <h1 class="information_title">Camera access got denied</h1>
     <p class="information_text">This web app is based on augmented reality, which has to have access to your camera</p>
-    <p class="information_text" style="margin-top: 30px;">Please allow the camera access via the camera blocked icon in your browsers address bar to access this web app.</p>
-    <p class="information_text" style="margin-top: 30px; margin-bottom: 30px;">Once access is granted, continue by pressing the button below or refresh the page.</p>
+    <p class="information_text" style="margin-top: 30px;">Please allow the camera access via the camera blocked icon in
+      your browsers address bar to access this web app.</p>
+    <p class="information_text" style="margin-top: 30px; margin-bottom: 30px;">Once access is granted, continue by
+      pressing the button below or refresh the page.</p>
     <button class="harborn_button button_details" forward="info-virtual" id="allow-camera-btn-redo">
       <span>I granted camera access</span>
     </button>
@@ -213,18 +241,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <div class="container_unsupported_device hide" id="unsupported_device">
     <h1 class="information_title">This device is not supported</h1>
     <p class="information_text">Sorry for the inconvenience, but this web app is not supported for this device.</p>
-    <p class="information_text" style="margin-top: 30px;">Please use your smartphone or tablet to visit this webpage.</p>
-    <p class="information_text" style="margin-top: 30px; margin-bottom: 30px;">This way you can experience the office tour in the way it was intented. Thank you!</p>
+    <p class="information_text" style="margin-top: 30px;">Please use your smartphone or tablet to visit this webpage.
+    </p>
+    <p class="information_text" style="margin-top: 30px; margin-bottom: 30px;">This way you can experience the office
+      tour in the way it was intented. Thank you!</p>
   </div>
 
-  <!-- Tutorial text box -->
-  <div class="container_tutorial_text_box hide">
-    <div class="text_box_background">
-      <p>When you have taken a photo you can see that the screen changes. This locks the movement of the camera, but
-        not the model!</p>
 
-    </div>
-  </div>
 
   <script type="module">
     // import { WebXRButton } from '../js/util/webxr-button.js';
