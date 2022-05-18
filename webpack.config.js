@@ -150,7 +150,8 @@ module.exports = (env, argv) => ({
         new HtmlWebpackPlugin({
             title: 'Harborn AR Office Tour',
             filename: 'index.html',
-            template: 'template.html'
+            template: 'template.html',
+            chunks: ['main']
         }),
         new HtmlWebpackPlugin({
             title: 'AR Component in Harborn WebAR',
