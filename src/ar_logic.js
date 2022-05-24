@@ -7,10 +7,28 @@ function toggleOutline(status) {
     if (status) {
         document.getElementById('harborn_logo_gltf').object3D.visible = false;
         document.getElementById('harborn_logo_outlined_gltf').object3D.visible = true;
+
+        document.getElementById('door_gltf').object3D.visible = false;
+        document.getElementById('door_outlined_gltf').object3D.visible = true;
+
+        document.getElementById('football_gltf').object3D.visible = false;
+        document.getElementById('football_outlined_gltf').object3D.visible = true;
+
+        document.getElementById('smiley_gltf').object3D.visible = false;
+        document.getElementById('smiley_outlined_gltf').object3D.visible = true;
     }
     else {
         document.getElementById('harborn_logo_gltf').object3D.visible = true;
         document.getElementById('harborn_logo_outlined_gltf').object3D.visible = false;
+
+        document.getElementById('door_gltf').object3D.visible = true;
+        document.getElementById('door_outlined_gltf').object3D.visible = false;
+
+        document.getElementById('football_gltf').object3D.visible = true;
+        document.getElementById('football_outlined_gltf').object3D.visible = false;
+
+        document.getElementById('smiley_gltf').object3D.visible = true;
+        document.getElementById('smiley_outlined_gltf').object3D.visible = false;
     }
 }
 
