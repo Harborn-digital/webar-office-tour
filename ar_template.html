@@ -11,8 +11,12 @@
         src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js">
         </script>
 
+    <!-- <script src="https://aframe.io/releases/1.0.4/aframe.min.js">
+    </script> -->
+
     <!-- include aframe-ar.js -->
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script>
 </head>
 
 <body style="margin: 0; overflow: hidden;">
@@ -37,7 +41,13 @@
     <!-- AR Scene -->
     <a-scene embedded
         arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'
-        vr-mode-ui="enabled: false">
+        renderer="logarithmicDepthBuffer: true;" vr-mode-ui="enabled: false" gesture-detector id="scene">
+
+        <!-- Set invisible cursor -->
+        <!-- <a-entity cursor="rayOrigin: mouse" raycaster="objects: .interactable; useWorldCoordinates: true;"></a-entity> -->
+
+        <!-- add a simple camera -->
+        <a-entity camera id="camera"></a-entity>
 
         <a-assets>
             <!-- GLTF Items -->
@@ -78,7 +88,8 @@
             <!-- Text information -->
             <a-plane height="1.5" width="3" position="0 0 1" rotation="-90 0 0" color="#122124">
                 <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
-                <a-text value="The garage" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2" isTitle="true"
+                <a-text value="The garage" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2"
+                    isTitle="true"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
                 <a-text
@@ -135,7 +146,8 @@
             <!-- Text information -->
             <a-plane height="2" width="3" position="0 0 1.5" rotation="-90 0 0" color="#122124">
                 <a-plane height="2" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
-                <a-text value="The garden" color="#CEFF27" align="left" width="3.5" position="-1.4 0.9 0.2" isTitle="true"
+                <a-text value="The garden" color="#CEFF27" align="left" width="3.5" position="-1.4 0.9 0.2"
+                    isTitle="true"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
                 <a-text
@@ -159,7 +171,8 @@
             <!-- Text information -->
             <a-plane height="1.5" width="3" position="0 0 1" rotation="-90 0 0" color="#122124">
                 <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
-                <a-text value="The focus area" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2" isTitle="true"
+                <a-text value="The focus area" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2"
+                    isTitle="true"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
                 <a-text
@@ -183,7 +196,37 @@
             <!-- Text information -->
             <a-plane height="2.5" width="3" position="0 0 2" rotation="-90 0 0" color="#122124">
                 <a-plane height="2.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
-                <a-text value="The rebranding" color="#CEFF27" align="left" width="3.5" position="-1.4 1.15 0.2" isTitle="true"
+                <a-text value="The rebranding" color="#CEFF27" align="left" width="3.5" position="-1.4 1.15 0.2"
+                    isTitle="true"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+                <a-text
+                    value="At the beginning of 2022, the doors of the new office space opened up. \n\nTogether with this new office, Connect Holland rebranded to the now known Harborn. \n\nAs this company is always continuing to develop, so did they in their name. \n\nHarborn is inspired by terms as 'herboren' and 'harbor'. Herboren being the Dutch word for being reborn and harbor as Harborn is located in Rotterdam, one of the biggest harbors in the Netherlands."
+                    color="white" align="left" width="2.8" position="-1.4 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+        </a-marker>
+
+        <!-- Logo wall marker -->
+        <a-marker id="logo_marker" markerhandler type='barcode' value='21' smooth="true" smoothCount="10"
+            smoothTolerance="0.005" smoothThreshold="1" raycaster="objects: .interactable" emitevents="true"
+            gesture-handler cursor="fuse: false; rayOrigin: mouse;">
+            <!-- Logo -->
+            <a-image src="#CH_logo" height="3" width="1.5" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+
+            <!-- Arrows -->
+            <a-entity id="left_arrow" class="interactable" left_arrow geometry="primitive: triangle"
+                material="side: double" position="-2 0 0" rotation="-90 90 0"></a-entity>
+            <a-entity id="right_arrow" class="interactable" geometry="primitive: triangle" material="side: double"
+                position="2 0 0" rotation="-90 -90 0"></a-entity>
+
+            <!-- Text information -->
+            <a-plane height="2.5" width="3" position="0 0 2" rotation="-90 0 0" color="#122124">
+                <a-plane height="2.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <a-text value="The rebranding" color="#CEFF27" align="left" width="3.5" position="-1.4 1.15 0.2"
+                    isTitle="true"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
                 <a-text
@@ -213,13 +256,90 @@
             </a-box>
         </a-marker>
 
-        <!-- add a simple camera -->
-        <a-entity id='userCamera' camera>
-        </a-entity>
     </a-scene>
 </body>
 <script>
+    var isMarkerVisible = false;
+    var rotationFactor = 5;
+    var amountRotated = 0;
+    var brandPosition = 0;
+    var brandList = [
+        "Harborn",
+        "Connect Holland",
+        "Lamb Western"
+    ]
+    var sceneEl = document.getElementById('scene');
+    var logoMarkerEl = document.getElementById('logo_marker');
+    var cameraEl = document.getElementById('camera');
+    sceneEl.addEventListener("onefingermove", handleRotation);
 
+    sceneEl.addEventListener("markerFound", (e) => {
+        isMarkerVisible = true;
+    });
+
+    sceneEl.addEventListener("markerLost", (e) => {
+        isMarkerVisible = false;
+    });
+
+    sceneEl.addEventListener("click", (e) => {
+        console.log("Clicked");
+    });
+
+    function handleRotation(e) {
+        console.log("One Move");
+        // console.log(brandList[3]);
+
+        if (isMarkerVisible) {
+            setTimeout(() => {
+                amountRotated = 0;
+            }, 2000);
+
+            // console.log("Marker y rotation: " + logoMarkerEl.object3D.rotation._y);
+            // console.log("Rotation y rotation: " + e.detail.positionChange.x * rotationFactor);
+
+            amountRotated += e.detail.positionChange.x * rotationFactor;
+            console.log("Amount rotated: " + amountRotated);
+
+            if (amountRotated >= 1) {
+                amountRotated = 0;
+                switchBrand(1);
+            }
+            if (amountRotated <= -1) {
+                amountRotated = 0;
+                switchBrand(-1);
+            }
+        }
+    }
+
+    function switchBrand(positionChange) {
+        brandPosition += positionChange
+
+        if (brandPosition < 0) {
+            brandPosition = 0;
+        }
+        if (brandPosition > brandList.length - 1) {
+            brandPosition = brandList.length - 1;
+        }
+
+        animateBrandChange(positionChange)
+        console.log(brandList[brandPosition]);
+    }
+
+    function animateBrandChange(rotationDirection) {
+        if (rotationDirection > 0) {
+            console.log("MADE IT HERE");
+            console.log(logoMarkerEl.object3D.position);
+            var markerZ = logoMarkerEl.object3D.position.z;
+            var markerY = logoMarkerEl.object3D.position.y;
+            logoMarkerEl.setAttribute('animation', "property: position; from: 0 " + markerY + " " + markerZ + "; to:8 0 " + markerZ + "; dur: 1000; easing: linear;");
+            setTimeout(() => {
+                logoMarkerEl.removeAttribute('animation');
+                logoMarkerEl.setAttribute('animation', "property: position; from: -8 " + markerY + " " + markerZ + "; to:0 0 " + markerZ + "; dur: 1000; easing: linear;");
+            }, 1000);
+            
+            
+        }
+    }
 
 </script>
 
