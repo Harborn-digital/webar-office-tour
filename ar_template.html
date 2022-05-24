@@ -217,7 +217,7 @@
             smoothTolerance="0.005" smoothThreshold="1" raycaster="objects: .interactable" emitevents="true"
             gesture-handler cursor="fuse: false; rayOrigin: mouse;">
             <!-- Logo -->
-            <a-image src="#CH_logo" height="3" width="2.8" position="0 0 -1.5" rotation="-90 0 0" id="company_image">
+            <a-image src="#CH_logo" height="2" width="2.8" position="0 0 -1.5" rotation="-90 0 0" id="company_image">
             </a-image>
             <a-plane height="3" width="3" position="0 -0.25 -1.5" rotation="-90 0 0" color="#122124"></a-plane>
 
@@ -232,7 +232,7 @@
                 material="shader:gif;src:#swiping;"></a-entity>
 
             <!-- Text information -->
-            <a-plane height="2.5" width="3" position="0 0 2" rotation="-90 0 0" color="#122124">
+            <a-plane height="2.5" width="3" position="0 0 2" rotation="-90 0 0" color="#122124" id="company_background">
                 <a-text value="Lamb Weston" color="#CEFF27" align="left" width="3.5" position="-1.4 1.15 0.2"
                     isTitle="true" id="company_name"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
@@ -271,28 +271,21 @@
     var rotationFactor = 5;
     var amountRotated = 0;
     var brandPosition = 0;
-    var brandList = [
-        "Harborn",
-        "Connect Holland",
-        "Lamb Western"
-    ];
-    var brandDescriptions;
-
     var brands = [
         {
             name: "Harborn",
             description: "das",
-            image: "#harborn_logo_full"
+            image: "#harborn_logo_full",
         },
         {
             name: "Connect Holland",
-            description: "saf",
-            image: "#CH_logo"
+            description: "Connect Holland was een jhsadbhjsa kas djkashdjk has hkdjfh adjkh jkahs jdha kshfjkhs fka kbashk bfhjbdf hybahfbask jbfkj abfkb kbs fjkbask bkjbkjb saf bksab j",
+            image: "#CH_logo",
         },
         {
             name: "Lamb Weston",
             description: "Friet",
-            image: "#harborn_logo_full"
+            image: "#harborn_logo_full",
         }
     ]
 
@@ -303,7 +296,8 @@
     var brandImage = document.getElementById('company_image');
     var brandName = document.getElementById('company_name');
     var brandDescription = document.getElementById('company_description');
-
+    var brandBackground = document.getElementById('company_background');
+    
     changeBrandData(0);
 
     sceneEl.addEventListener("onefingermove", handleRotation);
@@ -321,7 +315,7 @@
     });
 
     function handleRotation(e) {
-        console.log("One Move");
+        // console.log("One Move");
         // console.log(brandList[3]);
 
         if (isMarkerVisible) {
@@ -333,7 +327,7 @@
             // console.log("Rotation y rotation: " + e.detail.positionChange.x * rotationFactor);
 
             amountRotated += e.detail.positionChange.x * rotationFactor;
-            console.log("Amount rotated: " + amountRotated);
+            // console.log("Amount rotated: " + amountRotated);
 
             if (amountRotated >= 1) {
                 amountRotated = 0;
