@@ -10,10 +10,20 @@
     <script
         src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js">
         </script>
+    <!-- <script src="./js/aframe-master.min.js"> -->
+    </script>
+
+    <!-- <script src="https://aframe.io/releases/1.0.4/aframe.min.js">
+    </script> -->
 
     <!-- include aframe-ar.js -->
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-<script defer src="secondaryc475d03516cbb47708d1.js"></script></head>
+    <!-- <script src="./js/aframe-ar.js"></script> -->
+    <!-- <script src="https://raw.githack.com/fcor/arjs-gestures/master/dist/gestures.js"></script> -->
+    <!-- <script src="./js/gestures.js"></script> -->
+    <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script>
+    <!-- <script src="./js/aframe-gif-shader.min.js"></script> -->
+<script defer src="secondarya0ef560c7def84d0bf2c.js"></script></head>
 
 <body style="margin: 0; overflow: hidden;">
     <!-- Accessibility wheel -->
@@ -37,13 +47,27 @@
     <!-- AR Scene -->
     <a-scene embedded
         arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false;'
-        vr-mode-ui="enabled: false">
+        vr-mode-ui="enabled: false" gesture-detector id="scene">
+
+        <!-- Set invisible cursor -->
+        <!-- <a-entity cursor="rayOrigin: mouse" raycaster="objects: .interactable; useWorldCoordinates: true;"></a-entity> -->
+
+        <!-- add a simple camera -->
+        <a-entity camera id="camera"></a-entity>
 
         <a-assets>
             <!-- GLTF Items -->
             <a-asset-item id="harborn_logo" src="harborn_logo_fixed.gltf"></a-asset-item>
             <a-asset-item id="harborn_logo_outlined" src="harborn_logo_outline_fixed.gltf"></a-asset-item>
             <a-asset-item id="harborn_logo_highlighted" src="harborn_logo_highlight_fixed.gltf"></a-asset-item>
+
+            <!-- GLTF Items Testing -->
+            <a-asset-item id="door" src="Door.gltf"></a-asset-item>
+            <a-asset-item id="door_outlined" src="Door_Outlined.gltf"></a-asset-item>
+            <a-asset-item id="football" src="Football.gltf" )></a-asset-item>
+            <a-asset-item id="football_outlined" src="Football_Outlined.gltf"></a-asset-item>
+            <a-asset-item id="smiley" src="Smiley.gltf"></a-asset-item>
+            <a-asset-item id="smiley_outlined" src="Smiley_Outlined.gltf"></a-asset-item>
 
             <!-- Images -->
             <img id="harborn_garage" src=f60832c616ffb82fb5c3.jpg>
@@ -57,6 +81,9 @@
             <img id="harborn_focus_zoom" src=d68a8ef9b6655b505590.jpg>
             <img id="CH_logo" src=6050cf9d1412a4a2ffe8.png>
             <img id="harborn_logo_full" src=35be28894b3cae09f56e.png>
+
+            <!-- Gifs -->
+            <img id="swiping" src=a269976eab18bb41d916.gif>
         </a-assets>
 
         <!-- handle hiro marker -->
@@ -68,17 +95,18 @@
         <a-marker type='barcode' value='18' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
             <!-- Clear room -->
             <a-image src="#harborn_garage" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
 
             <!-- Brainstorming -->
             <a-image src="#harborn_garage_brainstorm" height="3" width="3" position="2 0 -1.5" rotation="-90 0 0">
             </a-image>
-            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
 
             <!-- Text information -->
             <a-plane height="1.5" width="3" position="0 0 1" rotation="-90 0 0" color="#122124">
-                <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
-                <a-text value="The garage" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2" isTitle="true"
+                <!-- <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane> -->
+                <a-text value="The garage" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2"
+                    isTitle="true"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
                 <a-text
@@ -93,9 +121,9 @@
         <a-marker type='barcode' value='39' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
             <!-- Pre renovation -->
             <a-image src="#harborn_pre_bouw" height="3" width="3" position="0 0 -2.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="0.1 -0.25 -2.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- <a-plane height="3" width="3" position="0.1 -0.25 -2.4" rotation="-90 0 0" color="#122124"></a-plane> -->
             <a-plane height="0.5" width="1.5" position="0 0.5 -1" rotation="-90 0 0" color="#122124">
-                <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <!-- <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane> -->
                 <a-text value="Before" color="#CEFF27" align="left" width="3.5" position="-0.65 0 0.2"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
@@ -103,9 +131,9 @@
 
             <!-- During renovation -->
             <a-image src="#harborn_during_bouw" height="3" width="3" position="-2 0 1.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="-1.9 -0.25 1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- <a-plane height="3" width="3" position="-1.9 -0.25 1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
             <a-plane height="0.5" width="1.5" position="-2 0.5 3" rotation="-90 0 0" color="#122124">
-                <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <!-- <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane> -->
                 <a-text value="During" color="#CEFF27" align="left" width="3.5" position="-0.65 0 0.2"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
@@ -113,9 +141,9 @@
 
             <!-- After renovation -->
             <a-image src="#harborn_post_bouw" height="3" width="3" position="2 0 1.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="2.1 -0.25 1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- <a-plane height="3" width="3" position="2.1 -0.25 1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
             <a-plane height="0.5" width="1.5" position="2 0.5 3" rotation="-90 0 0" color="#122124">
-                <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane>
+                <!-- <a-plane height="0.5" width="1.5" position="0.1 -0.1 -0.25" color="white"></a-plane> -->
                 <a-text value="After" color="#CEFF27" align="left" width="3.5" position="-0.65 0 0.2"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
@@ -126,16 +154,17 @@
         <a-marker type='barcode' value='24' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
             <!-- Harborn band -->
             <a-image src="#harborn_band" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
 
             <!-- Come together -->
             <a-image src="#harborn_come_together" height="3" width="3" position="2 0 -1.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
 
             <!-- Text information -->
             <a-plane height="2" width="3" position="0 0 1.5" rotation="-90 0 0" color="#122124">
-                <a-plane height="2" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
-                <a-text value="The garden" color="#CEFF27" align="left" width="3.5" position="-1.4 0.9 0.2" isTitle="true"
+                <!-- <a-plane height="2" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane> -->
+                <a-text value="The garden" color="#CEFF27" align="left" width="3.5" position="-1.4 0.9 0.2"
+                    isTitle="true"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
                 <a-text
@@ -150,16 +179,17 @@
         <a-marker type='barcode' value='55' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
             <!-- Harborn band -->
             <a-image src="#harborn_focus_wide" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
 
             <!-- Come together -->
             <a-image src="#harborn_focus_zoom" height="3" width="3" position="2 0 -1.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <!-- <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
 
             <!-- Text information -->
             <a-plane height="1.5" width="3" position="0 0 1" rotation="-90 0 0" color="#122124">
-                <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
-                <a-text value="The focus area" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2" isTitle="true"
+                <!-- <a-plane height="1.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane> -->
+                <a-text value="The focus area" color="#CEFF27" align="left" width="3.5" position="-1.4 0.65 0.2"
+                    isTitle="true"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
                 <a-text
@@ -182,8 +212,9 @@
 
             <!-- Text information -->
             <a-plane height="2.5" width="3" position="0 0 2" rotation="-90 0 0" color="#122124">
-                <a-plane height="2.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane>
-                <a-text value="The rebranding" color="#CEFF27" align="left" width="3.5" position="-1.4 1.15 0.2" isTitle="true"
+                <!-- <a-plane height="2.5" width="3" position="0.1 -0.1 -0.25" color="white"></a-plane> -->
+                <a-text value="The rebranding" color="#CEFF27" align="left" width="3.5" position="-1.4 1.15 0.2"
+                    isTitle="true"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
                 <a-text
@@ -194,14 +225,73 @@
             </a-plane>
         </a-marker>
 
+        <!-- Logo wall marker -->
+        <a-marker id="logo_marker" markerhandler type='barcode' value='21' smooth="true" smoothCount="10"
+            smoothTolerance="0.005" smoothThreshold="1" raycaster="objects: .interactable" emitevents="true"
+            gesture-handler cursor="fuse: false; rayOrigin: mouse;">
+            <!-- Logo -->
+            <a-plane height="3" width="3" position="0 -0.25 -1.5" rotation="-90 0 0" color="#122124" id="image_plane"
+                visible="false">
+            </a-plane>
+            <a-image src="#CH_logo" height="1" width="2.8" positon="0 0 1.5" rotation="-90 0 0" id="company_image"
+                visible="false">
+            </a-image>
+
+            <!-- Swipe animation -->
+            <!-- <a-plane height="0.5" width="3.2" position="0 0 -5" rotation="-90 0 0" color="#122124">
+                <a-text value="- swipe left or right to switch company -" color="white" align="left" width="3.5"
+                    position="-1.5 0 0.2"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane> -->
+            <a-entity geometry="primitive:plane;width:2;height:1;" position="0 0 -1.5" rotation="-90 0 0" gif
+                material="shader:gif;src:#swiping;" id="swiping_gif"></a-entity>
+
+            <!-- Text information -->
+            <a-plane height="1" width="3" position="0 0 0" rotation="-90 0 0" color="#122124" id="company_background">
+                <a-text value="- swipe left or right to switch company -" color="#CEFF27" align="left" width="3.5"
+                    position="-1.4 0 0.2" isTitle="true" id="company_name"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+                <a-text value="" color="white" align="left" width="2.8" position="-1.4 0 0.2" id="company_description"
+                    font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
+                </a-text>
+            </a-plane>
+        </a-marker>
+
         <!-- Harborn logo marker -->
         <a-marker type='barcode' value='17' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
-            <a-entity id="harborn_logo_gltf" gltf-model="#harborn_logo" position="0 0.5 -1.5" rotation="0 90 90">
+            <a-entity id="harborn_logo_gltf" gltf-model="#harborn_logo" position="0 0.5 -2" rotation="0 90 90">
             </a-entity>
-            <a-entity id="harborn_logo_outlined_gltf" gltf-model="#harborn_logo_outlined" position="0 0.5 -1.5"
+            <a-entity id="harborn_logo_outlined_gltf" gltf-model="#harborn_logo_outlined" position="0 0.5 -2"
                 rotation="0 90 90" visible="false"></a-entity>
-            <a-entity id="harborn_logo_highlighted_gltf" gltf-model="#harborn_logo_highlighted" position="0 0.5 -1.5"
+            <a-entity id="harborn_logo_highlighted_gltf" gltf-model="#harborn_logo_highlighted" position="0 0.5 -2"
                 rotation="90 90 90" visible="false" scale="1.1 1.1 1.1"></a-entity>
+        </a-marker>
+
+        <!-- Door marker -->
+        <a-marker type='barcode' value='32' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <a-entity id="door_gltf" gltf-model="#door" position="0 0.5 -5" rotation="90 90 90" scale="0.05 0.05 0.05">
+            </a-entity>
+            <a-entity id="door_outlined_gltf" gltf-model="#door_outlined" position="0 0.5 -5" rotation="90 90 90"
+                visible="false" scale="0.05 0.05 0.05"></a-entity>
+        </a-marker>
+
+        <!-- Football marker -->
+        <a-marker type='barcode' value='33' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <a-entity id="football_gltf" gltf-model="#football" position="0 0.5 -1.5" rotation="-90 90 90">
+            </a-entity>
+            <a-entity id="football_outlined_gltf" gltf-model="#football_outlined" position="0 0.5 -1.5"
+                rotation="-90 90 90" visible="false"></a-entity>
+        </a-marker>
+
+        <!-- Smiley marker -->
+        <a-marker type='barcode' value='34' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+            <a-entity id="smiley_gltf" gltf-model="#smiley" position="0 0.5 -1.5" rotation="-90 0 0"
+                scale="1.5 1.5 1.5">
+            </a-entity>
+            <a-entity id="smiley_outlined_gltf" gltf-model="#smiley_outlined" position="0 0.5 -1.5" rotation="-90 0 0"
+                visible="false" scale="1.5 1.5 1.5"></a-entity>
         </a-marker>
 
         <!-- handle kanji marker -->
@@ -213,14 +303,150 @@
             </a-box>
         </a-marker>
 
-        <!-- add a simple camera -->
-        <a-entity id='userCamera' camera>
-        </a-entity>
     </a-scene>
 </body>
 <script>
+    // Set logo wall variables
+    var isMarkerVisible = false;
+    var rotationFactor = 5;
+    var amountRotated = 0;
+    var brandPosition = -1;     //-1 So on the first swipe it steps up to 0, a.k.a the first item in the brands list
+    var firstSwipeDone = false;
+    var brands = [      //Info on all the brands
+        {
+            name: "Harborn",
+            description: "das",
+            image: "#harborn_logo_full",
+        },
+        {
+            name: "Connect Holland",
+            description: "Connect Holland was een jhsadbhjsa kas djkashdjk has hkdjfh adjkh jkahs jdha kshfjkhs fka kbashk bfhjbdf hybahfbask jbfkj abfkb kbs fjkbask bkjbkjb saf bksab j",
+            image: "#CH_logo",
+        },
+        {
+            name: "Lamb Weston",
+            description: "Friet",
+            image: "#harborn_logo_full",
+        }
+    ]
 
+    // Get logo wall elements
+    const sceneEl = document.getElementById('scene');
+    const logoMarkerEl = document.getElementById('logo_marker');
+    const brandImage = document.getElementById('company_image');
+    const imageBackground = document.getElementById('image_plane');
+    const brandName = document.getElementById('company_name');
+    const brandDescription = document.getElementById('company_description');
+    const brandBackground = document.getElementById('company_background');
+    const swipingGif = document.getElementById('swiping_gif');
 
+                  //Checks swiping on the canvas
+
+    sceneEl.addEventListener("markerFound", (e) => {                        //Checks if marker is being scanned
+        isMarkerVisible = true;
+    });
+
+    sceneEl.addEventListener("markerLost", (e) => {                         //Checks if marker is not being scanned anymore
+        isMarkerVisible = false;
+    });
+
+    function handleRotation(e) {
+        if (isMarkerVisible) {                                              //Check marker scanned
+            setTimeout(() => {                                              //2 seconds inactive means reset swipe
+                amountRotated = 0;
+            }, 2000);
+
+            amountRotated += e.detail.positionChange.x * rotationFactor;    //Set amount swiped
+            // console.log("Amount rotated: " + amountRotated);
+
+            if (amountRotated >= 1 && firstSwipeDone) {
+                amountRotated = 0;                                          //Reset swipe
+                switchBrand(1);
+            }
+            else if (amountRotated <= -1 && firstSwipeDone) {
+                amountRotated = 0;
+                switchBrand(-1);
+            }
+            else if (amountRotated >= 1 && !firstSwipeDone) {
+                amountRotated = 0;
+                removeSwipingGIF();
+                switchBrand(1);
+            }
+            else if (amountRotated <= -1 && !firstSwipeDone) {
+                amountRotated = 0;
+                removeSwipingGIF();
+                switchBrand(1);
+            }
+        }
+    }
+
+    function switchBrand(positionChange) {                  //Update brand number from list
+        brandPosition += positionChange;
+
+        if (brandPosition < 0) {                            //Block when first item has been reached
+            brandPosition = 0;
+        }
+        else if (brandPosition > brands.length - 1) {       //Block when last item has been reached
+            brandPosition = brands.length - 1;
+        }
+        else {                                              //Change details
+            animateBrandChange(positionChange);
+            changeBrandData(brandPosition);
+        }
+    }
+
+    function animateBrandChange(rotationDirection) {
+        if (rotationDirection > 0) {                            //Animate to the right
+            var markerZ = logoMarkerEl.object3D.position.z;     //Get marker positions
+            var markerY = logoMarkerEl.object3D.position.y;
+            logoMarkerEl.setAttribute('animation', "property: position; from: 0 " + markerY + " " + markerZ + "; to:8 0 " + markerZ + "; dur: 500; easing: linear;");
+            setTimeout(() => {                                  //Animation from other side, plays when previous has finished
+                logoMarkerEl.removeAttribute('animation');
+                logoMarkerEl.setAttribute('animation', "property: position; from: -8 " + markerY + " " + markerZ + "; to:0 0 " + markerZ + "; dur: 500; easing: linear;");
+            }, 500);
+        }
+        if (rotationDirection < 0) {                            //Animate to the left
+            var markerZ = logoMarkerEl.object3D.position.z;
+            var markerY = logoMarkerEl.object3D.position.y;
+            logoMarkerEl.setAttribute('animation', "property: position; from: 0 " + markerY + " " + markerZ + "; to:-8 0 " + markerZ + "; dur: 500; easing: linear;");
+            setTimeout(() => {
+                logoMarkerEl.removeAttribute('animation');
+                logoMarkerEl.setAttribute('animation', "property: position; from: 8 " + markerY + " " + markerZ + "; to:0 0 " + markerZ + "; dur: 500; easing: linear;");
+            }, 500);
+        }
+    }
+
+    function changeBrandData(position) {
+        let tempName = brands[position].name;       //Get info from the JSON list
+        let tempDescription = brands[position].description;
+        let tempImage = brands[position].image;
+
+        setTimeout(() => {                          //Set details when objects are out of view
+            brandImage.setAttribute('src', tempImage);
+            brandName.setAttribute('value', tempName);
+            brandDescription.setAttribute('value', tempDescription);
+        }, 500);
+    }
+
+    function removeSwipingGIF() {
+        firstSwipeDone = true;
+
+        setTimeout(() => {      //Set details when objects are out of view
+            // Set image
+            brandImage.setAttribute('visible', 'true');
+            brandImage.object3D.position.z = -1.5;
+            imageBackground.setAttribute('visible', 'true');
+
+            // Remove GIF
+            swipingGif.setAttribute('visible', 'false');
+
+            // Set brand details
+            brandBackground.setAttribute('height', '2.5');
+            brandBackground.setAttribute('width', '3');
+            brandBackground.setAttribute('position', '0 0 2');
+            brandName.setAttribute('position', '-1.4 1.15 0.2');
+        }, 500);
+    }
 </script>
 
 </html>
