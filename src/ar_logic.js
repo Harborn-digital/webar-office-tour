@@ -105,6 +105,22 @@ $('[class*=accessibility_selection]').click(function (e) {
     switchOption($(this));
 });
 
+// Accessibility click events
+$('[class*=accessibility_color]').keypress(function (e) {
+    if (e.which == 13) {
+        e.preventDefault();
+        switchColors($(this));
+    }
+});
+
+$('[class*=accessibility_selection]').keypress(function (e) {
+    if (e.which == 13) {
+        e.preventDefault();
+        switchOption($(this));
+    }
+});
+
+
 // Set logo wall variables
 var isMarkerVisible = false;
 var rotationFactor = 5;

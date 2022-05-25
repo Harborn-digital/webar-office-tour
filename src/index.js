@@ -91,18 +91,21 @@ if (device_type === "desktop") {
 
 //View controller
 function showView(viewName) {
-  $('[class*=container]').hide();
+  setTimeout(() => {
+    $('[class*=container]').hide();
 
-  if (viewName === "ar-view") {
-    addArView();
-    $('#ar-view').show();
-  }
-  if (viewName === "allow-camera" && camera_access) {
-    $('#info-virtual').show();
-  }
-  else {
-    $('#' + viewName).show();
-  }
+    if (viewName === "ar-view") {
+      addArView();
+      $('#ar-view').show();
+    }
+    if (viewName === "allow-camera" && camera_access) {
+      $('#info-virtual').show();
+    }
+    else {
+      $('#' + viewName).show();
+    }
+  }, 80);
+
 };
 
 function addArView() {
@@ -204,6 +207,7 @@ $('[forward]').click(function (e) {
   }
 });
 
+
 $('#text_size_up').click(function (e) {
   e.preventDefault();
   if (font_size < 120) {
@@ -213,6 +217,16 @@ $('#text_size_up').click(function (e) {
   document.body.style.fontSize = String(font_size) + "%";
 });
 
+$('#text_size_up').keypress(function (e) {
+  if (e.which == 13) {
+    e.preventDefault();
+    if (font_size < 120) {
+      font_size += 5;
+    }
+    document.body.style.fontSize = String(font_size) + "%";
+  }
+});
+
 $('#text_size_down').click(function (e) {
   e.preventDefault();
   if (font_size > 100) {
@@ -220,6 +234,16 @@ $('#text_size_down').click(function (e) {
   }
   // console.log(String(font_size));
   document.body.style.fontSize = String(font_size) + "%";
+});
+
+$('#text_size_down').keypress(function (e) {
+  if (e.which == 13) {
+    e.preventDefault();
+    if (font_size > 100) {
+      font_size -= 5;
+    }
+    document.body.style.fontSize = String(font_size) + "%";
+  }
 });
 
 $('#text_spacing_up').click(function (e) {
@@ -233,6 +257,19 @@ $('#text_spacing_up').click(function (e) {
   $('.information_title').css({ "line-height": line_height_title + "px" });
 });
 
+$('#text_spacing_up').keypress(function (e) {
+  if (e.which == 13) {
+    e.preventDefault();
+    if (line_height_text < 44) {
+      line_height_text += 2;
+      line_height_title += 2;
+    }
+    $('.settings_option_text').css({ "line-height": line_height_text + "px" });
+    $('.information_text').css({ "line-height": line_height_text + "px" });
+    $('.information_title').css({ "line-height": line_height_title + "px" });
+  }
+});
+
 $('#text_spacing_down').click(function (e) {
   e.preventDefault();
   if (line_height_text > 30) {
@@ -242,6 +279,19 @@ $('#text_spacing_down').click(function (e) {
   $('.settings_option_text').css({ "line-height": line_height_text + "px" });
   $('.information_text').css({ "line-height": line_height_text + "px" });
   $('.information_title').css({ "line-height": line_height_title + "px" });
+});
+
+$('#text_spacing_down').keypress(function (e) {
+  if (e.which == 13) {
+    e.preventDefault();
+    if (line_height_text > 30) {
+      line_height_text -= 2;
+      line_height_title -= 2;
+    }
+    $('.settings_option_text').css({ "line-height": line_height_text + "px" });
+    $('.information_text').css({ "line-height": line_height_text + "px" });
+    $('.information_title').css({ "line-height": line_height_title + "px" });
+  }
 });
 
 // $('#activate_ar_button').click(function (e) {
