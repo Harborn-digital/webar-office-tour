@@ -18,7 +18,7 @@ $inactive-color: #5b5b5b;
 $font-small: 100%;
 $font-medium: 137.5%;
 $font-title: 200%;
-$font-splash: 356.25%;
+$font-splash: 325%;
 $font-wheel: 125%;
 
 $wall-background: url(../../media/images/Wall-Background.jpg);
@@ -83,6 +83,11 @@ p {
     text-decoration: none;
     padding: 20px 20px;
     height: 83px;
+
+    &:active{
+        background-color: $harborn-light-grey;
+        color: $harborn-black;
+    }
 }
 
 .button_details {
@@ -100,7 +105,7 @@ p {
     background-size: cover;
     width: 100%;
     max-width: 100%;
-    padding-bottom: 20px;
+    min-height: 100%;
 }
 
 .accessibility_button {
@@ -127,11 +132,12 @@ p {
 
 .splash_title {
     color: $harborn-lime;
-    margin: 0 25px 50px;
-    font-size: min(max(57px), 57px);
+    margin: 0 25px;
+    // font-size: min(max(57px), 57px);
+    font-size: $font-splash;
     padding: 0;
     font-weight: 400;
-    padding-top: 100px;
+    padding-top: 75px;
     max-width: 400px;
 }
 
@@ -242,6 +248,7 @@ input:checked + .slider {
 
 input:focus + .slider {
     box-shadow: 0 0 1px $harborn-lime;
+    outline: 4px solid $harborn-lime;
 }
 
 input:checked + .slider:before {
@@ -315,6 +322,16 @@ input:checked + .slider:before {
 
 .negative_button {
     background-color: $harborn-light-grey;
+
+    &:active{
+        background-color: $harborn-black;
+        border: 1px solid $harborn-lime;
+        color: $harborn-lime;
+    }
+}
+
+.container_tutorial_main{
+    padding-bottom: 20px;
 }
 
 .container_ar {
