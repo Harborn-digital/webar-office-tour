@@ -25,6 +25,15 @@ body {
     font-family: "Space Grotesk", sans-serif;
 }
 
+.container_ar_ui{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    max-width: 100%;
+    z-index: 100;
+}
+
 .buttons {
     position: absolute;
     top: 0;
@@ -58,13 +67,9 @@ body {
         "selection selection selection"
         "icon icon icon";
     row-gap: 0px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100vw;
     max-width: 100%;
     box-sizing: border-box;
-    z-index: 100;
 }
 
 .accessibility_selection {
@@ -121,4 +126,48 @@ body {
 .active{
     outline: 2px solid white;
     outline-offset: 5px;
+}
+
+.container_logo_wall_buttons{
+    padding: 15px 30px 30px;
+    text-align: center;
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+        "button button";
+    row-gap: 0px;
+    width: 100vw;
+    max-width: 100%;
+    box-sizing: border-box;
+    visibility: hidden;
+}
+
+.logo_wall_button_left, .logo_wall_button_right{
+    width: 100px;
+    height: 75px;
+    background-color: $harborn-black;
+    border: none;
+	padding: 0;
+	cursor: pointer;
+	outline: inherit;
+    place-items: center;
+
+    &:active{
+        background-color: $harborn-light-grey;
+        width: 90px;
+        height: 65px;
+    }
+}
+
+.arrow_svg{
+    height: 80%;
+}
+
+.left{
+    transform: rotate(-90deg);
+}
+
+.right{
+    transform: rotate(90deg);
 }
