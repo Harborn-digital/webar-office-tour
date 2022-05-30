@@ -38,7 +38,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <title>
     Harborn AR Office Tour
   </title>
-<script defer src="main81eca461c9c515a7fec7.js"></script></head>
+<script defer src="main444b0144030502ec2ee6.js"></script></head>
 
 <body style='margin : 0px; height: 100%;'>
   <!-- Splash screen container -->
@@ -50,7 +50,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <span class="splash_title_line">Welcome to the <span class="splash_title_line_name">Harborn</span> augmented
         reality office tour</span>
     </h1>
-    <button class="harborn_button button_details" aria-label="Start experience" forward="allow-camera">
+    <button class="harborn_button button_details" aria-label="Start experience" forward="allow-camera"
+      style="margin-bottom: 20px; margin-top: 20px;">
       <span>Start experience</span>
       <svg width="28" height="18" fill="#243282" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd"
@@ -74,7 +75,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <div class="mini_cont_settings_info">
       <div class="mini_cont_settings_option">
-        <h2 class="settings_option_title">Colorblind mode</h2>
+        <h2 class="settings_option_title">Colorblind mode -WIP-</h2>
         <label class="switch">
           <input type="checkbox">
           <span class="slider round"></span>
@@ -86,7 +87,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     <div class="mini_cont_settings_info">
       <div class="mini_cont_settings_option">
-        <h2 class="settings_option_title">Brightness lens</h2>
+        <h2 class="settings_option_title">Brightness lens -WIP-</h2>
         <label class="switch">
           <input type="checkbox">
           <span class="slider round"></span>
@@ -100,18 +101,36 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <div class="mini_cont_settings_text">
         <h2 class="settings_option_title" style="width: auto;">Text size</h2>
         <div class="mini_cont_icons">
-          <span class="iconify edits" data-icon="akar-icons:minus" id="text_size_down"></span>
+          <svg class="iconify edits" id="text_size_down" tabindex="0" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M20 12H4" />
+          </svg>
           <span class="iconify edits" data-icon="codicon:text-size"></span>
-          <span class="iconify edits" data-icon="akar-icons:plus" id="text_size_up"></span>
+          <svg class="iconify edits" id="text_size_up" tabindex="0" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"
+              d="M12 20v-8m0 0V4m0 8h8m-8 0H4" />
+          </svg>
         </div>
       </div>
 
       <div class="mini_cont_settings_text">
         <h2 class="settings_option_title" style="width: auto;">Text spacing</h2>
         <div class="mini_cont_icons">
-          <span class="iconify edits" data-icon="akar-icons:minus" id="text_spacing_down"></span>
+          <svg class="iconify edits" id="text_spacing_down" tabindex="0" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M20 12H4" />
+          </svg>
           <span class="iconify edits" data-icon="fluent:text-line-spacing-20-filled"></span>
-          <span class="iconify edits" data-icon="akar-icons:plus" id="text_spacing_up"></span>
+          <svg class="iconify edits" id="text_spacing_up" tabindex="0" xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true" role="img" width="1em" height="1em" preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 24 24">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"
+              d="M12 20v-8m0 0V4m0 8h8m-8 0H4" />
+          </svg>
         </div>
       </div>
     </footer>
@@ -120,7 +139,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <!-- Allow camera container -->
   <div class="container_allow_camera hide" id="allow-camera">
     <h1 class="information_title">Please allow camera access</h1>
-    <p class="information_text" style="margin-bottom: 30px;">For this augmented reality experience we will need to use your camera to oberserve
+    <p class="information_text" style="margin-bottom: 30px;">For this augmented reality experience we will need to use
+      your camera to oberserve
       your surroundings.</p>
     <div class="center_div">
       <lottie-player src="https://assets5.lottiefiles.com/temp/lf20_8wtnLF.json" speed="1"

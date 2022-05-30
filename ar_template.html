@@ -103,6 +103,12 @@
             <img id="harborn_focus_zoom" src=<%=require("./media/images/focus_zoom.jpg")%>>
             <img id="CH_logo" src=<%=require("./media/images/CH_logo.png")%>>
             <img id="harborn_logo_full" src=<%=require("./media/images/harborn_logo.png")%>>
+            <img id="marin_logo" src=<%=require("./media/images/marin_logo.png")%>>
+            <img id="lamb_weston_logo" src=<%=require("./media/images/lamb_weston.png")%>>
+            <img id="caru_logo" src=<%=require("./media/images/caru_logo.png")%>>
+            <img id="itanks_logo" src=<%=require("./media/images/itanks_logo.png")%>>
+            <img id="holmatro_logo" src=<%=require("./media/images/holmatro_logo.png")%>>
+            <img id="jmt_logo" src=<%=require("./media/images/jmt_logo.png")%>>
 
             <!-- Gifs -->
             <img id="swiping" src=<%=require("./media/images/swipe-lr.gif")%>>
@@ -225,12 +231,12 @@
         <!-- Rebranding info marker -->
         <a-marker type='barcode' value='6' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
             <!-- Harborn band -->
-            <a-image src="#CH_logo" height="3" width="1.5" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-image src="#CH_logo" height="1" width="2.8" position="-1.9 0 -1.5" rotation="-90 0 0"></a-image>
             <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
 
             <!-- Come together -->
-            <a-image src="#harborn_logo_full" height="1.5" width="3" position="2 0 -1.5" rotation="-90 0 0"></a-image>
-            <a-plane height="3" width="3" position="2.1 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
+            <a-image src="#harborn_logo_full" height="1" width="2.8" position="1.9 0 -1.5" rotation="-90 0 0"></a-image>
+            <a-plane height="3" width="3" position="1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
 
             <!-- Text information -->
             <a-plane height="2.5" width="3" position="0 0 2" rotation="-90 0 0" color="#122124">
@@ -252,10 +258,10 @@
             smoothTolerance="0.005" smoothThreshold="1" raycaster="objects: .interactable" emitevents="true"
             gesture-handler cursor="fuse: false; rayOrigin: mouse;">
             <!-- Logo -->
-            <a-plane height="3" width="3" position="0 -0.25 -1.5" rotation="-90 0 0" color="#122124" id="image_plane"
+            <a-plane height="3" width="3" position="0 -0.25 -3" rotation="-90 0 0" color="#122124" id="image_plane"
                 visible="false">
             </a-plane>
-            <a-image src="#CH_logo" height="1" width="2.8" positon="0 0 1.5" rotation="-90 0 0" id="company_image"
+            <a-image src="#CH_logo" height="1" width="2.8" positon="0 0 3" rotation="-90 0 0" id="company_image"
                 visible="false">
             </a-image>
 
@@ -272,7 +278,7 @@
             <!-- Text information -->
             <a-plane height="1" width="3" position="0 0 0" rotation="-90 0 0" color="#122124" id="company_background">
                 <a-text value="- swipe left or right to switch company -" color="#CEFF27" align="left" width="3.5"
-                    position="-1.4 0 0.2" isTitle="true" id="company_name"
+                    position="-1.4 0 0.1" isTitle="true" id="company_name"
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
                 <a-text value="" color="white" align="left" width="2.8" position="-1.4 0 0.2" id="company_description"
@@ -292,7 +298,7 @@
         </a-marker>
 
         <!-- Door marker -->
-        <a-marker type='barcode' value='32' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='14' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
             <a-entity id="door_gltf" gltf-model="#door" position="0 0.5 -5" rotation="90 90 90" scale="0.05 0.05 0.05">
             </a-entity>
             <a-entity id="door_outlined_gltf" gltf-model="#door_outlined" position="0 0.5 -5" rotation="90 90 90"
@@ -301,18 +307,18 @@
 
         <!-- Football marker -->
         <a-marker type='barcode' value='33' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
-            <a-entity id="football_gltf" gltf-model="#football" position="0 0.5 -1.5" rotation="-90 90 90">
+            <a-entity id="football_gltf" gltf-model="#football" position="0 0 -1" rotation="-90 90 90">
             </a-entity>
-            <a-entity id="football_outlined_gltf" gltf-model="#football_outlined" position="0 0.5 -1.5"
+            <a-entity id="football_outlined_gltf" gltf-model="#football_outlined" position="0 0 -1"
                 rotation="-90 90 90" visible="false"></a-entity>
         </a-marker>
 
         <!-- Smiley marker -->
         <a-marker type='barcode' value='34' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
-            <a-entity id="smiley_gltf" gltf-model="#smiley" position="0 0.5 -1.5" rotation="-90 0 0"
+            <a-entity id="smiley_gltf" gltf-model="#smiley" position="0 0.5 0.5" rotation="-90 0 0"
                 scale="1.5 1.5 1.5">
             </a-entity>
-            <a-entity id="smiley_outlined_gltf" gltf-model="#smiley_outlined" position="0 0.5 -1.5" rotation="-90 0 0"
+            <a-entity id="smiley_outlined_gltf" gltf-model="#smiley_outlined" position="0 0.5 0.5" rotation="-90 0 0"
                 visible="false" scale="1.5 1.5 1.5"></a-entity>
         </a-marker>
 

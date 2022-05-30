@@ -129,19 +129,34 @@ var brandPosition = -1;     //-1 So on the first swipe it steps up to 0, a.k.a t
 var firstSwipeDone = false;
 var brands = [      //Info on all the brands
     {
-        name: "Harborn",
-        description: "das",
-        image: "#harborn_logo_full",
+        name: "Marin",
+        description: "MARIN, het Maritiem Research Instituut Nederland, is een van de grootste instituten ter wereld voor onderzoek naar hydrodynamica en maritieme technologie door middel van simulaties, modeltesten, ware-groottemetingen en training. MARIN richt zich hierbij op de scheepsbouw, scheepvaart, offshore-industrie en overheden.",
+        image: "#marin_logo",
     },
     {
-        name: "Connect Holland",
-        description: "Connect Holland was een jhsadbhjsa kas djkashdjk has hkdjfh adjkh jkahs jdha kshfjkhs fka kbashk bfhjbdf hybahfbask jbfkj abfkb kbs fjkbask bkjbkjb saf bksab j",
-        image: "#CH_logo",
+        name: "CARU",
+        description: "CARU Containers, is een Nederlands bedrijf wat internationaal containers verhuurt die nieuw of gebruikt zijn. Vanuit 10 verschillende landen bedienen zij markten over de hele wereld. Zij zijn een van de grootste containerhandelaren wereldwijd doordat zij het huren van een container simpel maken.",
+        image: "#caru_logo",
     },
     {
         name: "Lamb Weston",
-        description: "Friet",
-        image: "#harborn_logo_full",
+        description: "Lamb Weston Holdings, Inc. is een Amerikaans voedselverwerkingsbedrijf dat een van 's werelds grootste producenten en verwerkers is van diepgevroren frites, wafelfrietjes en andere diepgevroren aardappelproducten.",
+        image: "#lamb_weston_logo",
+    },
+    {
+        name: "iTanks",
+        description: "iTanks is a knowledge and innovation platform for the port-related industry. An industry with enormous innovation potential. They connect companies, knowledge institutes and industry experts and introduce these parties with new technology and the latest innovations from within and outside the sector. In addition, their strength lies in the renewal of the port-related industry. There is an enormous amount of knowledge and expertise available, the application areas of which are not yet (optimally) used for industry.",
+        image: "#itanks_logo",
+    },
+    {
+        name: "Holmatro",
+        description: "Holmatro is een internationaal bedrijf dat hydraulische apparatuur en systemen produceert voor industriële toepassingen en hulpdiensten met behulp van hydraulische redgereedschappen.",
+        image: "#holmatro_logo",
+    },
+    {
+        name: "JMT",
+        description: "JMT is een van de grootste verhuurders van meubilair en vloerbedekkingen voor evenement en beurzen in heel Europa. Wij bieden een compleet pakket aan producten, diensten en kennis. Bij JMT staat service en kwaliteit voorop zodat onze klanten succesvolle beursstand en inrichting, congressen en events in de breedste zin van het woord kunnen opleveren.",
+        image: "#jmt_logo",
     }
 ]
 
@@ -277,7 +292,7 @@ function removeSwipingGIF() {
     setTimeout(() => {      //Set details when objects are out of view
         // Set image
         brandImage.setAttribute('visible', 'true');
-        brandImage.object3D.position.z = -1.5;
+        brandImage.object3D.position.z = -3;
         imageBackground.setAttribute('visible', 'true');
 
         // Remove GIF
@@ -286,8 +301,8 @@ function removeSwipingGIF() {
         // Set brand details
         brandBackground.setAttribute('height', '2.5');
         brandBackground.setAttribute('width', '3');
-        brandBackground.setAttribute('position', '0 0 2');
-        brandName.setAttribute('position', '-1.4 1.15 0.2');
+        brandBackground.setAttribute('position', '0 0 0');
+        brandName.setAttribute('position', '-1.35 1 0.2');
     }, 500);
 }
 
