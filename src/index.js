@@ -42,17 +42,18 @@ var line_height_text = 30;
 
 let device_type;
 
-let tutorialStep = 0;
+let tutorialStep = 1;
 let tutorialText = [
   'Welcome to the Harborn Office Tour Experience, in which you will learn more about Harborn and their projects.',
-  'You will use your camera to scan the markers like above.',
-  'When the camera successfully recognized the QR code it will load the corresponding virtual model',
-  'There the model has loaded! Now we can look at the three built in accessibility features.',
-  'First off we have the text color mode, which allows you to choose between three different colors. This will change all text to that color! This way you can adjust it to fit best to your preference.',
+  'You will use your camera to scan the markers like above, which will load the corresponding virtual model.',
+  'Now that we have the model, we can look at the three built in accessibility features.',
+  'You will be able to switch between the three features on the top of the accessibility wheel. If a model does not support a feature, then the feature will be deactivated as shown on the outline option.',
+  'First off we have the text color mode, which allows you to choose between three different colors. This will change all text to that color! This way you can adjust it to fit best to the background.',
+  'You will be able to choose between the three different options on the bottom of the screen. The selected color will be actived with the white box around it.',
   'Next we have the highlight feature!',
-  'As you can see it highlights the virtual object. It will do this with all virtual objects that can be interacted with. This way the difference between the real and virtual world can be clarified and interactables can be highlighted.',
+  'As you can see it highlights the virtual object. It will do this with all virtual objects that can be interacted with, so the difference between models can be clarified.',
   'Our last feature is the outline feature!',
-  'This feature works similar to the highlight feature. Only this one outlines all special virtual objects. This way the shape of the object can be made extra clear!',
+  'This feature works similar to the highlight feature. Only this one outlines all virtual models. This way the shape of the object can be made extra clear!',
   'This was it for the tutorial. Enjoy the augmented reality experience and learn more about Harborn!',
 ]
 
@@ -118,54 +119,167 @@ function addArView() {
   arContainer.appendChild(arFrame);
 }
 
+function centerSpotlight(elementGoal) {
+  const spotlightElement = $('#tutorial-spotlight');
+  if (elementGoal === "hidden") {
+    spotlightElement.css('left', 0);
+    spotlightElement.css('top', 0);
+    spotlightElement.css('width', 1);
+    spotlightElement.css('height', 1);
+  }
+  else {
+    var cX = elementGoal.offset().left - 10;
+    var cY = elementGoal.offset().top - 10;
+
+    var cWidth = elementGoal.width() + 20;
+    var cHeight = elementGoal.height() + 20;
+
+    spotlightElement.css('left', cX);
+    spotlightElement.css('top', cY);
+    spotlightElement.css('width', cWidth);
+    spotlightElement.css('height', cHeight);
+  }
+}
+
 function startTutorial(stap) {
-  let tekstElement = $('#tutorial-text');
-  let imageElement = $('#tutorial-image');
+  const tekstElement = $('#tutorial-text');
+  const imageElement = $('#tutorial-image');
+  const accessibilityWheelOptionsElement = $('#accessibility-wheel-options');
+  const accessibilityWheelSubOptionsElement = $('#accessibility-wheel-sub-options');
+  const outlineOptionElement = $('#outline-tutorial');
+  const textColorOptionElement = $('#text-color-tutorial');
+  const highlightOptionElement = $('#highlight-tutorial');
+  const backButtonElement = $('#tutorial-back-button');
+
   switch (stap) {
     case 1:
       tekstElement.text(tutorialText[0]);
+      imageElement.attr('src', "");
+      backButtonElement.css('visibility', 'hidden');
+
+      centerSpotlight("hidden");
+
       break;
     case 2:
       tekstElement.text(tutorialText[1]);
       imageElement.attr('src', HarbornLogoQR);
+      backButtonElement.css('visibility', 'visible');
+
+      centerSpotlight(imageElement);
+
       break;
     case 3:
+      //Forward
       tekstElement.text(tutorialText[2]);
+      imageElement.attr('src', HarbornLogoImage);
+
+      //Back
+      $('#highlight-tutorial').addClass('inactive_tutorial');
+
+      centerSpotlight(imageElement);
+
       break;
     case 4:
+      //Forward
       tekstElement.text(tutorialText[3]);
       imageElement.attr('src', HarbornLogoImage);
+      $('#highlight-tutorial').removeClass('inactive_tutorial');
+
+      centerSpotlight(accessibilityWheelOptionsElement);
+
       break;
     case 5:
+      //Forward
       tekstElement.text(tutorialText[4]);
+      imageElement.attr('src', HarbornLogoImage);
+      $('#highlight-tutorial').addClass('inactive_tutorial');
+
+      centerSpotlight(textColorOptionElement);
+
       break;
     case 6:
+      //Forward
       tekstElement.text(tutorialText[5]);
-      $('#highlight-tutorial').removeClass('inactive_tutorial');
+      imageElement.attr('src', HarbornLogoImage);
+
+      //Back
+      $('#highlight-tutorial').addClass('inactive_tutorial');
+
+      centerSpotlight(accessibilityWheelSubOptionsElement);
+
       break;
     case 7:
+      //Forward
       tekstElement.text(tutorialText[6]);
+      $('#highlight-tutorial').removeClass('inactive_tutorial');
+      imageElement.attr('src', HarbornLogoImage);
+
+      //Back
+      $('#highlight-tutorial').removeClass('selected_tutorial');
+      $('#text-color-tutorial').addClass('selected_tutorial');
+      $('#text-color-tutorial').removeClass('inactive_tutorial');
+      $('[class*=accessibility_color]').show();
+      $('[class*=accessibility_sub_line]').show();
+
+      centerSpotlight(highlightOptionElement);
+
+      break;
+    case 8:
+      //Forward
+      tekstElement.text(tutorialText[7]);
+      $('#highlight-tutorial').removeClass('inactive_tutorial');
       $('#highlight-tutorial').addClass('selected_tutorial');
       $('#text-color-tutorial').removeClass('selected_tutorial');
       $('#text-color-tutorial').addClass('inactive_tutorial');
       $('[class*=accessibility_color]').hide();
+      $('[class*=accessibility_sub_line]').hide();
       imageElement.attr('src', HarbornLogoImageRed);
-      break;
-    case 8:
-      tekstElement.text(tutorialText[7]);
-      $('#outline-tutorial').removeClass('inactive_tutorial');
+
+      //Back
+      $('#outline-tutorial').addClass('inactive_tutorial');
+
+      centerSpotlight(imageElement);
+
       break;
     case 9:
+      //Forward
       tekstElement.text(tutorialText[8]);
+      $('#outline-tutorial').removeClass('inactive_tutorial');
+      imageElement.attr('src', HarbornLogoImageRed);
+
+      //Back
+      $('#outline-tutorial').removeClass('selected_tutorial');
+      $('#highlight-tutorial').addClass('selected_tutorial');
+      $('#highlight-tutorial').removeClass('inactive_tutorial');
+
+      centerSpotlight(outlineOptionElement);
+
+      break;
+    case 10:
+      //Forward
+      tekstElement.text(tutorialText[9]);
       $('#outline-tutorial').addClass('selected_tutorial');
       $('#highlight-tutorial').removeClass('selected_tutorial');
       $('#highlight-tutorial').addClass('inactive_tutorial');
       imageElement.attr('src', HarbornLogoImageOutlined);
-      break;
-    case 10:
-      tekstElement.text(tutorialText[9]);
+
+      //Back
+      $('#tutorial-button-next-step').text("Next step");
+
+      centerSpotlight(imageElement);
+
       break;
     case 11:
+      //Forward
+      tekstElement.text(tutorialText[10]);
+      imageElement.attr('src', HarbornLogoImageOutlined);
+      $('#tutorial-button-next-step').text("Start AR");
+
+      centerSpotlight("hidden");
+
+      break;
+    case 12:
+      //Forward
       showView("ar-view");
   }
 
@@ -196,7 +310,16 @@ $('[forward]').click(function (e) {
   if ($(this).attr('forward') === "tutorial-start") {
     var viewName = $(this).attr('forward');
     showView(viewName);
-    document.body.addEventListener('click', function () {
+    startTutorial(tutorialStep)
+    document.getElementById('tutorial-back-button').addEventListener('click', function () {
+      tutorialStep -= 1;
+      if (tutorialStep < 1) {
+        tutorialStep = 1;
+      }
+      startTutorial(tutorialStep)
+    });
+
+    document.getElementById('tutorial-forward-button').addEventListener('click', function () {
       tutorialStep += 1;
       startTutorial(tutorialStep)
     });

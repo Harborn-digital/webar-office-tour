@@ -64,6 +64,7 @@ function switchOption(element) {
 
         // Hide color options
         $('[class*=accessibility_color]').hide();
+        $('[class=accessibility_sub_line]').hide();
     }
     if (chosenOption === "textColor") {
         toggleOutline(false);
@@ -73,6 +74,7 @@ function switchOption(element) {
 
         // Show color options
         $('[class*=accessibility_color]').show();
+        $('[class=accessibility_sub_line]').show();
     }
     if (chosenOption === "highlight") {
         toggleOutline(false);
@@ -81,6 +83,7 @@ function switchOption(element) {
 
         // Hide color options
         $('[class*=accessibility_color]').hide();
+        $('[class=accessibility_sub_line]').hide();
     }
 }
 

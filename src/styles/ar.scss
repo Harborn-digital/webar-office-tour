@@ -62,14 +62,27 @@ body {
     text-align: center;
     place-items: center;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-areas:
-        "selection selection selection"
-        "icon icon icon";
+    grid-template-columns: repeat(1, minmax(0, 1fr));
     row-gap: 0px;
     width: 100vw;
     max-width: 100%;
     box-sizing: border-box;
+}
+
+.accessibility_sub_line{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.accessibility_options, .accessibility_sub_options{
+    text-align: center;
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 30px;
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: 100%;
 }
 
 .accessibility_selection {
@@ -77,6 +90,7 @@ body {
     font-weight: 300;
     color: $harborn-white;
     display: inline;
+    margin: 0 0 10px 0;
 
     &:nth-child(1){
         place-self: center start;
