@@ -38,7 +38,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   <title>
     Harborn AR Office Tour
   </title>
-<script defer src="main444b0144030502ec2ee6.js"></script></head>
+<script defer src="main2fe38e1747f6afc389dd.js"></script></head>
 
 <body style='margin : 0px; height: 100%;'>
   <!-- Splash screen container -->
@@ -215,20 +215,45 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <!-- Text box -->
       <div class="tutorial_text_box">
         <p id="tutorial-text"></p>
-        <p class="continue_text">-Click to continue-</p>
+      </div>
+
+      <div class="tutorial_buttons">
+        <button class="harborn_button button_details tutorial_button negative_button" id="tutorial-back-button">
+          <svg width="28" height="13" viewBox="0 0 18 18" preserveAspectRatio="xMidYMid meet" x="0" y="0"
+            transform="rotate(180 0 0)" fill="#243282" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M0 9.001a1 1 0 011-1h23.586L18.292 1.71A1.001 1.001 0 1119.708.293l8 8a1 1 0 010 1.416l-8 8a1.001 1.001 0 01-1.416-1.416l6.294-6.292H1a1 1 0 01-1-1z">
+            </path>
+          </svg>
+          <span>Previous step</span>
+        </button>
+        <button class="harborn_button button_details tutorial_button" id="tutorial-forward-button">
+          <span id="tutorial-button-next-step">Next step</span>
+          <svg width="28" height="13" viewBox="0 0 18 18" preserveAspectRatio="xMidYMid meet" x="0" y="0" fill="#243282"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M0 9.001a1 1 0 011-1h23.586L18.292 1.71A1.001 1.001 0 1119.708.293l8 8a1 1 0 010 1.416l-8 8a1.001 1.001 0 01-1.416-1.416l6.294-6.292H1a1 1 0 01-1-1z">
+            </path>
+          </svg>
+        </button>
       </div>
 
       <!-- Accessibility wheel -->
       <div class="accessibility_wheel_tutorial" id="accessibility_wheel">
-        <p class="accessibility_selection_tutorial inactive_tutorial" optionClass="outline" id="outline-tutorial">
-          Outline</p>
-        <p class="accessibility_selection_tutorial selected_tutorial" optionClass="textColor" id="text-color-tutorial">
-          Text color</p>
-        <p class="accessibility_selection_tutorial inactive_tutorial" optionClass="highlight" id="highlight-tutorial">
-          Highlight</p>
-        <div class="accessibility_color_tutorial greyblue wheel_secondary_option" chosenColor="#a3c2c4"></div>
-        <div class="accessibility_color_tutorial white wheel_secondary_option active" chosenColor="#efefef"></div>
-        <div class="accessibility_color_tutorial lime wheel_secondary_option" chosenColor="#ceff27"></div>
+        <div class="accessibility_options" id="accessibility-wheel-options">
+          <p class="accessibility_selection_tutorial inactive_tutorial" optionClass="outline" id="outline-tutorial">
+            Outline</p>
+          <p class="accessibility_selection_tutorial selected_tutorial" optionClass="textColor"
+            id="text-color-tutorial">
+            Text color</p>
+          <p class="accessibility_selection_tutorial inactive_tutorial" optionClass="highlight" id="highlight-tutorial">
+            Highlight</p>
+        </div>
+        <div class="accessibility_sub_options" id="accessibility-wheel-sub-options">
+          <div class="accessibility_color_tutorial greyblue wheel_secondary_option" chosenColor="#a3c2c4"></div>
+          <div class="accessibility_color_tutorial white wheel_secondary_option active" chosenColor="#efefef"></div>
+          <div class="accessibility_color_tutorial lime wheel_secondary_option" chosenColor="#ceff27"></div>
+        </div>
       </div>
     </div>
 
@@ -236,6 +261,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       <image class="tutorial_image" id="tutorial-image">
       </image>
     </div>
+
+    <div class="spotlight" id="tutorial-spotlight"></div>
   </div>
 
   <!-- AR not available screen -->
