@@ -7,6 +7,7 @@ $harborn-light-grey: #efefef;
 $harborn-white: #fff;
 $harborn-beige: #e0dbc7;
 $harborn-greyblue: #a3c2c4;
+$inactive-color: #5b5b5b;
 
 // $font-small: 16px;
 // $font-medium: 24px;
@@ -104,6 +105,10 @@ body {
 .selected {
     color: $harborn-lime;
     font-weight: bold;
+}
+
+.inactive{
+    color: $inactive-color;
 }
 
 .accessibility_selection_icon {
