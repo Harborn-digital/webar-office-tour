@@ -5,6 +5,8 @@ var gif = require("../js/aframe-gif-shader.min.js");
 let highlightState = false;
 // let myIntervalId;
 
+hideSubOptions();
+
 function toggleOutline(status) {
     if (status) {
         document.getElementById('harborn_logo_gltf').object3D.visible = false;
@@ -53,37 +55,47 @@ function toggleHighlight(status) {
 
 
 function switchOption(element) {
-    element.addClass('selected').siblings().removeClass('selected');
     var chosenOption = element.attr('optionClass');
-
-    if (chosenOption === "outline") {
-        toggleOutline(true);
-
+    if (element.attr('class').includes('selected')) {
+        //Turn off all effects
+        toggleOutline(false);
         toggleHighlight(false);
-        // removeInterval();
 
         // Hide color options
-        $('[class*=accessibility_color]').hide();
-        $('[class=accessibility_sub_line]').hide();
+        hideSubOptions();
+
+        element.removeClass('selected').siblings().removeClass('selected');
     }
-    if (chosenOption === "textColor") {
-        toggleOutline(false);
+    else {
+        element.addClass('selected').siblings().removeClass('selected');
 
-        toggleHighlight(false);
-        // removeInterval();
+        if (chosenOption === "outline") {
+            toggleOutline(true);
 
-        // Show color options
-        $('[class*=accessibility_color]').show();
-        $('[class=accessibility_sub_line]').show();
-    }
-    if (chosenOption === "highlight") {
-        toggleOutline(false);
+            toggleHighlight(false);
+            // removeInterval();
 
-        toggleHighlight(true);
+            // Hide color options
+            hideSubOptions();
+        }
+        if (chosenOption === "textColor") {
+            toggleOutline(false);
 
-        // Hide color options
-        $('[class*=accessibility_color]').hide();
-        $('[class=accessibility_sub_line]').hide();
+            toggleHighlight(false);
+            // removeInterval();
+
+            // Show color options
+            $('[class*=accessibility_color]').show();
+            $('[class=accessibility_sub_line]').show();
+        }
+        if (chosenOption === "highlight") {
+            toggleOutline(false);
+
+            toggleHighlight(true);
+
+            // Hide color options
+            hideSubOptions();
+        }
     }
 }
 
@@ -105,7 +117,11 @@ $('[class*=accessibility_color]').click(function (e) {
 
 $('[class*=accessibility_selection]').click(function (e) {
     e.preventDefault();
-    switchOption($(this));
+    let classNames = $(e.target).attr('class');
+
+    if (!classNames.includes("inactive")) {
+        switchOption($(this));
+    }
 });
 
 // Accessibility click events
@@ -119,7 +135,11 @@ $('[class*=accessibility_color]').keypress(function (e) {
 $('[class*=accessibility_selection]').keypress(function (e) {
     if (e.which == 13) {
         e.preventDefault();
-        switchOption($(this));
+        let classNames = $(e.target).attr('class');
+
+        if (!classNames.includes("inactive")) {
+            switchOption($(this));
+        }
     }
 });
 
@@ -176,19 +196,25 @@ const swipingGif = document.getElementById('swiping_gif');
 const containerButtons = document.getElementById('container-buttons');
 const leftButton = document.getElementById('left-button');
 const rightButton = document.getElementById('right-button');
+var isLogoWallVisible = false;
 
 sceneEl.addEventListener("onefingermove", handleRotation);              //Checks swiping on the canvas
 
 sceneEl.addEventListener("markerFound", (e) => {                        //Checks if marker is being scanned
     isMarkerVisible = true;
+    setOptionStates(e.target.attributes.optionState.value);
 
     if (e.target.attributes.value.nodeValue == 21) {
+        isLogoWallVisible = true;
         containerButtons.style.visibility = "visible";
     }
 });
 
 sceneEl.addEventListener("markerLost", (e) => {                         //Checks if marker is not being scanned anymore
     isMarkerVisible = false;
+    setOptionStates("none");
+
+    isLogoWallVisible = false;
     containerButtons.style.visibility = "hidden";
 });
 
@@ -211,8 +237,86 @@ rightButton.addEventListener('click', function (e) {
     }
 });
 
+//Get accessibility wheel items
+const outlineOption = $('#outline');
+const textColorOption = $('#textColor');
+const highlightOption = $('#highlight');
+
+function setOptionStates(markerStateInfo) {
+    //Clear all marker states
+    outlineOption.removeClass('inactive');
+    textColorOption.removeClass('inactive');
+    highlightOption.removeClass('inactive');
+
+    //There are three options that can be used. Each has been shortened to their first letter
+    //If the letter is in the markerStateInfo, it means that the option is avaiable for that marker
+    //The shortened version are; outline: O, text color: T and highlight: H
+    switch (markerStateInfo) {
+        case "O":
+            textColorOption.addClass('inactive');
+            textColorOption.removeClass('selected');
+            hideSubOptions();
+
+            highlightOption.addClass('inactive');
+            highlightOption.removeClass('selected');
+
+            break;
+
+        case "OT":
+            highlightOption.addClass('inactive');
+            highlightOption.removeClass('selected');
+
+            break;
+
+        case "OH":
+            textColorOption.addClass('inactive');
+            textColorOption.removeClass('selected');
+            hideSubOptions();
+
+            break;
+
+        case "OTH":
+            break;
+
+        case "T":
+            outlineOption.addClass('inactive');
+            outlineOption.removeClass('selected');
+            highlightOption.addClass('inactive');
+            highlightOption.removeClass('selected');
+
+            break;
+
+        case "TH":
+            outlineOption.addClass('inactive');
+            outlineOption.removeClass('selected');
+
+            break;
+
+        case "none":
+            outlineOption.addClass('inactive');
+            outlineOption.removeClass('selected');
+            textColorOption.addClass('inactive');
+            textColorOption.removeClass('selected');
+            hideSubOptions();
+            highlightOption.addClass('inactive');
+            highlightOption.removeClass('selected');
+
+            //Turn off all effects
+            toggleOutline(false);
+            toggleHighlight(false);
+
+            break;
+    }
+}
+
+function hideSubOptions() {
+    $('[class*=accessibility_color]').hide();
+    $('[class=accessibility_sub_line]').hide();
+}
+
+
 function handleRotation(e) {
-    if (isMarkerVisible) {                                              //Check marker scanned
+    if (isMarkerVisible && isLogoWallVisible) {                         //Check marker scanned
         setTimeout(() => {                                              //2 seconds inactive means reset swipe
             amountRotated = 0;
         }, 2000);
