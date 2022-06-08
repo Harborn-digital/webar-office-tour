@@ -61,6 +61,17 @@ const rules = [
         ]
     },
     {
+        test: /textures.*\.(png|jpg|svg|jpeg|gif|ico)$/i,
+        type: 'asset/resource',
+        // generator: {
+        //     filename: 'assets/images/[name].[hash][ext][query]'
+        // }
+        generator: {
+            filename: '[name][ext]',
+            outputPath: 'textures/'
+        },
+    },
+    {
         test: /\.(png|jpg|svg|jpeg|gif|ico)$/i,
         type: 'asset/resource',
         // generator: {
@@ -85,7 +96,7 @@ const rules = [
         test: /\.(gltf|bin|dat|patt|)$/,
         type: 'asset/resource',
         generator: {
-            filename: '[name][ext]'
+            filename: '[name][ext]',
         }
     },
     // {

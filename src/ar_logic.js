@@ -2,6 +2,58 @@ import './styles/ar.scss';
 var gestures = require("../js/gestures.js");
 var gif = require("../js/aframe-gif-shader.min.js");
 
+//Import objects
+import Reticle from '../media/gltf/reticle/reticle.gltf';
+import ReticleBin from '../media/gltf/reticle/reticle.bin';
+import HarbornLogo from '../media/gltf/harborn/harborn_logo_fixed.gltf';
+import HarbornLogoBin from '../media/gltf/harborn/harborn_logo_fixed.bin';
+import HarbornLogoOutline from '../media/gltf/harborn/harborn_logo_outline_fixed.gltf';
+import HarbornLogoBinOutline from '../media/gltf/harborn/harborn_logo_outline_fixed.bin';
+import HarbornLogoHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.gltf';
+import HarbornLogoBinHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.bin';
+
+//Import logo wall objects
+import boat from '../media/gltf/brand_models/boat/boat.gltf';
+import boatBin from '../media/gltf/brand_models/boat/boat.bin';
+var boatTextures = require.context('../media/gltf/brand_models/boat/textures', false, /\.png$/);
+import yacht from '../media/gltf/brand_models/yacht/yacht.gltf';
+import yachtBin from '../media/gltf/brand_models/yacht/yacht.bin';
+var yachtTextures = require.context('../media/gltf/brand_models/yacht/textures', false, /\.(png|jpeg|jpg)$/);
+import sailboat from '../media/gltf/brand_models/sailboat/sailboat.gltf';
+import sailboatBin from '../media/gltf/brand_models/sailboat/sailboat.bin';
+var sailboatTextures = require.context('../media/gltf/brand_models/sailboat/textures', false, /\.(png|jpeg|jpg)$/);
+import yellowContainer from '../media/gltf/brand_models/container_yellow/container_yellow.gltf';
+import yellowContainerBin from '../media/gltf/brand_models/container_yellow/container_yellow.bin';
+var yellowContainerTextures = require.context('../media/gltf/brand_models/container_yellow/textures', false, /\.(png|jpeg|jpg)$/);
+import greenContainer from '../media/gltf/brand_models/container_green/container_green.gltf';
+import greenContainerBin from '../media/gltf/brand_models/container_green/container_green.bin';
+var greenContainerTextures = require.context('../media/gltf/brand_models/container_green/textures', false, /\.(png|jpeg|jpg)$/);
+import fries from '../media/gltf/brand_models/fries/fries.gltf';
+import friesBin from '../media/gltf/brand_models/fries/fries.bin';
+import potato from '../media/gltf/brand_models/potato/potato.gltf';
+import potatoBin from '../media/gltf/brand_models/potato/potato.bin';
+var potatoTextures = require.context('../media/gltf/brand_models/potato/textures', false, /\.(png|jpeg|jpg)$/);
+import jack from '../media/gltf/brand_models/jack/jack.gltf';
+import jackBin from '../media/gltf/brand_models/jack/jack.bin';
+var jackTextures = require.context('../media/gltf/brand_models/jack/textures', false, /\.(png|jpeg|jpg)$/);
+import pliers from '../media/gltf/brand_models/pliers/pliers.gltf';
+import pliersBin from '../media/gltf/brand_models/pliers/pliers.bin';
+var pliersTextures = require.context('../media/gltf/brand_models/pliers/textures', false, /\.(png|jpeg|jpg)$/);
+
+// Test objects
+import Door from '../media/gltf/testing/Door.gltf';
+import DoorBin from '../media/gltf/testing/Door.bin';
+import DoorOutline from '../media/gltf/testing/Door_Outlined.gltf';
+import DoorOutlineBin from '../media/gltf/testing/Door_Outlined.bin';
+import Football from '../media/gltf/testing/Football.gltf';
+import FootballBin from '../media/gltf/testing/Football.bin';
+import FootballOutline from '../media/gltf/testing/Football_Outlined.gltf';
+import FootballOutlineBin from '../media/gltf/testing/Football_Outlined.bin';
+import Smiley from '../media/gltf/testing/Smiley.gltf';
+import SmileyBin from '../media/gltf/testing/Smiley.bin';
+import SmileyOutline from '../media/gltf/testing/Smiley_Outlined.gltf';
+import SmileyOutlineBin from '../media/gltf/testing/Smiley_Outlined.bin';
+
 let highlightState = false;
 // let myIntervalId;
 
@@ -155,31 +207,91 @@ var brands = [      //Info on all the brands
         name: "Marin",
         description: "MARIN, het Maritiem Research Instituut Nederland, is een van de grootste instituten ter wereld voor onderzoek naar hydrodynamica en maritieme technologie door middel van simulaties, modeltesten, ware-groottemetingen en training. MARIN richt zich hierbij op de scheepsbouw, scheepvaart, offshore-industrie en overheden.",
         image: "#marin_logo",
+        gltf_left: boat,
+        gltf_left_pos: '2.4 0 -2',
+        gltf_left_rot: '-45 -90 90',
+        gltf_left_scale: '0.003 0.003 0.003',
+        gltf_left_anim: '',
+        gltf_right: "sailboat",   //uncomment for model
+        gltf_right_pos: '-2.2 0 -2',
+        gltf_right_rot: '140 -90 90',
+        gltf_right_scale: '0.001 0.001 0.001',
+        gltf_right_anim: '',
     },
     {
         name: "CARU",
         description: "CARU Containers, is een Nederlands bedrijf wat internationaal containers verhuurt die nieuw of gebruikt zijn. Vanuit 10 verschillende landen bedienen zij markten over de hele wereld. Zij zijn een van de grootste containerhandelaren wereldwijd doordat zij het huren van een container simpel maken.",
         image: "#caru_logo",
+        gltf_left: greenContainer,
+        gltf_left_pos: '2.4 0 -2',
+        gltf_left_rot: '45 -90 90',
+        gltf_left_scale: '0.025 0.025 0.025',
+        gltf_left_anim: '',
+        gltf_right: yellowContainer,
+        gltf_right_pos: '-2.2 0 -2',
+        gltf_right_rot: '135 -90 90',
+        gltf_right_scale: '0.003 0.003 0.003',
+        gltf_right_anim: '',
     },
     {
         name: "Lamb Weston",
         description: "Lamb Weston Holdings, Inc. is een Amerikaans voedselverwerkingsbedrijf dat een van 's werelds grootste producenten en verwerkers is van diepgevroren frites, wafelfrietjes en andere diepgevroren aardappelproducten.",
         image: "#lamb_weston_logo",
+        gltf_left: fries,
+        gltf_left_pos: '2.4 0 -2',
+        gltf_left_rot: '-45 -90 90',
+        gltf_left_scale: '0.8 0.8 0.8',
+        gltf_left_anim: '',
+        gltf_right: "potato",       //uncomment for model
+        gltf_right_pos: '-2.2 0 -2',
+        gltf_right_rot: '-90 -90 90',
+        gltf_right_scale: '0.1 0.1 0.1',
+        gltf_right_anim: '',
     },
     {
         name: "iTanks",
         description: "iTanks is a knowledge and innovation platform for the port-related industry. An industry with enormous innovation potential. They connect companies, knowledge institutes and industry experts and introduce these parties with new technology and the latest innovations from within and outside the sector. In addition, their strength lies in the renewal of the port-related industry. There is an enormous amount of knowledge and expertise available, the application areas of which are not yet (optimally) used for industry.",
         image: "#itanks_logo",
+        gltf_left: "",
+        gltf_left_pos: '2.4 0 -2',
+        gltf_left_rot: '-45 -90 90',
+        gltf_left_scale: '0.003 0.003 0.003',
+        gltf_left_anim: '',
+        gltf_right: "",
+        gltf_right_pos: '-2.2 0 -2',
+        gltf_right_rot: '140 -90 90',
+        gltf_right_scale: '0.001 0.001 0.001',
+        gltf_right_anim: '',
     },
     {
         name: "Holmatro",
         description: "Holmatro is een internationaal bedrijf dat hydraulische apparatuur en systemen produceert voor industriële toepassingen en hulpdiensten met behulp van hydraulische redgereedschappen.",
         image: "#holmatro_logo",
+        gltf_left: "pliers",        //uncomment for model
+        gltf_left_pos: '2.4 0 -2',
+        gltf_left_rot: '-45 -90 90',
+        gltf_left_scale: '0.00003 0.00003 0.00003',
+        gltf_left_anim: '',
+        gltf_right: jack,
+        gltf_right_pos: '0 0 0',
+        gltf_right_rot: '-70 -90 90',
+        gltf_right_scale: '2.5 2.5 2.5',
+        gltf_right_anim: 'add',
     },
     {
         name: "JMT",
         description: "JMT is een van de grootste verhuurders van meubilair en vloerbedekkingen voor evenement en beurzen in heel Europa. Wij bieden een compleet pakket aan producten, diensten en kennis. Bij JMT staat service en kwaliteit voorop zodat onze klanten succesvolle beursstand en inrichting, congressen en events in de breedste zin van het woord kunnen opleveren.",
         image: "#jmt_logo",
+        gltf_left: "",
+        gltf_left_pos: '2.4 0 -2',
+        gltf_left_rot: '-45 -90 90',
+        gltf_left_scale: '0.003 0.003 0.003',
+        gltf_left_anim: '',
+        gltf_right: "",
+        gltf_right_pos: '-2.2 0 -2',
+        gltf_right_rot: '140 -90 90',
+        gltf_right_scale: '0.001 0.001 0.001',
+        gltf_right_anim: '',
     }
 ]
 
@@ -192,6 +304,8 @@ const brandName = document.getElementById('company_name');
 const brandDescription = document.getElementById('company_description');
 const brandBackground = document.getElementById('company_background');
 const swipingGif = document.getElementById('swiping_gif');
+const leftModel = document.getElementById('logo_wall_model_left');
+const rightModel = document.getElementById('logo_wall_model_right');
 
 const containerButtons = document.getElementById('container-buttons');
 const leftButton = document.getElementById('left-button');
@@ -206,7 +320,7 @@ sceneEl.addEventListener("markerFound", (e) => {                        //Checks
 
     if (e.target.attributes.value.nodeValue == 21) {
         isLogoWallVisible = true;
-        containerButtons.style.visibility = "visible";
+        showLogoWallButtons();
     }
 });
 
@@ -215,7 +329,7 @@ sceneEl.addEventListener("markerLost", (e) => {                         //Checks
     setOptionStates("none");
 
     isLogoWallVisible = false;
-    containerButtons.style.visibility = "hidden";
+    hideLogoWallButtons();
 });
 
 leftButton.addEventListener('click', function (e) {
@@ -227,6 +341,7 @@ leftButton.addEventListener('click', function (e) {
         switchBrand(1);
     }
 });
+
 rightButton.addEventListener('click', function (e) {
     if (firstSwipeDone) {
         switchBrand(1)
@@ -241,6 +356,18 @@ rightButton.addEventListener('click', function (e) {
 const outlineOption = $('#outline');
 const textColorOption = $('#textColor');
 const highlightOption = $('#highlight');
+
+function hideLogoWallButtons(){
+    containerButtons.style.visibility = "hidden";
+    leftButton.style.visibility = "hidden";
+    rightButton.style.visibility = "hidden";
+}
+
+function showLogoWallButtons(){
+    containerButtons.style.visibility = "visible";
+    leftButton.style.visibility = "visible";
+    rightButton.style.visibility = "visible";
+}
 
 function setOptionStates(markerStateInfo) {
     //Clear all marker states
@@ -384,12 +511,48 @@ function animateBrandChange(rotationDirection) {
 function changeBrandData(position) {
     let tempName = brands[position].name;       //Get info from the JSON list
     let tempDescription = brands[position].description;
-    let tempImage = brands[position].image;
+    let tempImage = brands[position].image; 
+    let tempLeftGltf = brands[position].gltf_left;
+    let tempLeftPos = brands[position].gltf_left_pos;
+    let tempLeftRot = brands[position].gltf_left_rot;
+    let tempLeftScale = brands[position].gltf_left_scale;
+    let tempLeftAnim = brands[position].gltf_left_anim;
+    let tempRightGltf = brands[position].gltf_right;
+    let tempRightPos = brands[position].gltf_right_pos;
+    let tempRightRot = brands[position].gltf_right_rot;
+    let tempRightScale = brands[position].gltf_right_scale;
+    let tempRightAnim = brands[position].gltf_right_anim;
+
+    if(position == 0){
+        leftButton.style.visibility = "hidden";
+    }
+    else if(position == brands.length -1){
+        rightButton.style.visibility = "hidden";
+    }
+    else{
+        leftButton.style.visibility = "visible";
+        rightButton.style.visibility = "visible";
+    }
 
     setTimeout(() => {                          //Set details when objects are out of view
         brandImage.setAttribute('src', tempImage);
         brandName.setAttribute('value', tempName);
         brandDescription.setAttribute('value', tempDescription);
+        console.log(leftModel.getAttribute('gltf-model'));    
+        leftModel.setAttribute('gltf-model', tempLeftGltf);
+        console.log(leftModel.getAttribute('gltf-model'));
+        // leftModel.setAttribute('position', tempLeftPos);
+        leftModel.setAttribute('rotation', tempLeftRot);
+        leftModel.setAttribute('scale', tempLeftScale);
+        rightModel.setAttribute('gltf-model', tempRightGltf);
+        // rightModel.setAttribute('position', tempRightPos);
+        rightModel.setAttribute('rotation', tempRightRot);
+        rightModel.setAttribute('scale', tempRightScale);
+
+        if(tempRightAnim == 'add'){
+            rightModel.setAttribute('animation-mixer', 'clip: Animation');
+        }
+
     }, 500);
 }
 

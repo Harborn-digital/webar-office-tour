@@ -5,30 +5,6 @@ import {
   requestMediaPermissions
 } from 'mic-check';
 
-//Import objects
-import Reticle from '../media/gltf/reticle/reticle.gltf';
-import ReticleBin from '../media/gltf/reticle/reticle.bin';
-import HarbornLogo from '../media/gltf/harborn/harborn_logo_fixed.gltf';
-import HarbornLogoBin from '../media/gltf/harborn/harborn_logo_fixed.bin';
-import HarbornLogoOutline from '../media/gltf/harborn/harborn_logo_outline_fixed.gltf';
-import HarbornLogoBinOutline from '../media/gltf/harborn/harborn_logo_outline_fixed.bin';
-import HarbornLogoHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.gltf';
-import HarbornLogoBinHighlight from '../media/gltf/harborn/harborn_logo_highlight_fixed.bin';
-
-// Test objects
-import Door from '../media/gltf/testing/Door.gltf';
-import DoorBin from '../media/gltf/testing/Door.bin';
-import DoorOutline from '../media/gltf/testing/Door_Outlined.gltf';
-import DoorOutlineBin from '../media/gltf/testing/Door_Outlined.bin';
-import Football from '../media/gltf/testing/Football.gltf';
-import FootballBin from '../media/gltf/testing/Football.bin';
-import FootballOutline from '../media/gltf/testing/Football_Outlined.gltf';
-import FootballOutlineBin from '../media/gltf/testing/Football_Outlined.bin';
-import Smiley from '../media/gltf/testing/Smiley.gltf';
-import SmileyBin from '../media/gltf/testing/Smiley.bin';
-import SmileyOutline from '../media/gltf/testing/Smiley_Outlined.gltf';
-import SmileyOutlineBin from '../media/gltf/testing/Smiley_Outlined.bin';
-
 // Import images
 import HarbornLogoQR from '../media/images/QR-circle-Harborn-Logo.png';
 import HarbornLogoImage from '../media/images/HarbornIconTransparant.png';

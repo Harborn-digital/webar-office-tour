@@ -23,7 +23,7 @@
     <!-- <script src="./js/gestures.js"></script> -->
     <!-- <script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"></script> -->
     <!-- <script src="./js/aframe-gif-shader.min.js"></script> -->
-<script defer src="secondary93b39311fe0ef808f406.js"></script></head>
+<script defer src="secondary46490e46bb3a0d682f69.js"></script></head>
 
 <body style="margin: 0; overflow: hidden;">
     <!-- AR UI -->
@@ -49,15 +49,12 @@
         <!-- Accessibility wheel -->
         <div class="container_accessibility_wheel hide" id="accessibility_wheel">
             <div class="accessibility_options" id="accessibility-wheel-options">
-                <p class="accessibility_selection" optionClass="outline" id="outline" tabindex="0">Outline</p>
-                <p class="accessibility_selection selected" optionClass="textColor" id="textColor" tabindex="0">Text
+                <p class="accessibility_selection inactive" optionClass="outline" id="outline" tabindex="0">Outline</p>
+                <p class="accessibility_selection inactive" optionClass="textColor" id="textColor" tabindex="0">Text
                     color
                 </p>
-                <p class="accessibility_selection" optionClass="highlight" id="highlight" tabindex="0">Highlight</p>
+                <p class="accessibility_selection inactive" optionClass="highlight" id="highlight" tabindex="0">Highlight</p>
             </div>
-            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500">
-                <path fill="rgba(255, 255, 255 , 0.01)" stroke="#FFF" stroke-width="2" fill-opacity="1" d="M 0 20 L 100 20 L 230 20 L 250 0 L 270 20 L 400 20 L 500 20 "></path>
-            </svg> -->
             <img class="accessibility_sub_line" src=2874cafe6b15a5aadf2f.png alt="Arrow Line"></img>
             <div class="accessibility_sub_options" id="accessibility-wheel-sub-options">
                 <div class="accessibility_color greyblue wheel_secondary_option" chosenColor="#a3c2c4" id="greyblue"
@@ -96,6 +93,10 @@
             <a-asset-item id="harborn_logo_outlined" src="harborn_logo_outline_fixed.gltf"></a-asset-item>
             <a-asset-item id="harborn_logo_highlighted" src="harborn_logo_highlight_fixed.gltf"></a-asset-item>
 
+            <!-- GLTF Items Logo Wall -->
+            <a-asset-item id="container_green" src="container_green.gltf"></a-asset-item>
+            <a-asset-item id="container_yellow" src="container_yellow.gltf"></a-asset-item>
+
             <!-- GLTF Items Testing -->
             <a-asset-item id="door" src="Door.gltf"></a-asset-item>
             <a-asset-item id="door_outlined" src="Door_Outlined.gltf"></a-asset-item>
@@ -133,7 +134,7 @@
         </a-marker>
 
         <!-- The garage info marker -->
-        <a-marker type='barcode' value='18' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='18' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1" optionState="T">
             <!-- Clear room -->
             <a-image src="#harborn_garage" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
             <!-- <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
@@ -159,7 +160,7 @@
         </a-marker>
 
         <!-- Renovation info marker -->
-        <a-marker type='barcode' value='39' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='39' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1" optionState="T">
             <!-- Pre renovation -->
             <a-image src="#harborn_pre_bouw" height="3" width="3" position="0 0 -2.5" rotation="-90 0 0"></a-image>
             <!-- <a-plane height="3" width="3" position="0.1 -0.25 -2.4" rotation="-90 0 0" color="#122124"></a-plane> -->
@@ -192,7 +193,7 @@
         </a-marker>
 
         <!-- The garden info marker -->
-        <a-marker type='barcode' value='24' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='24' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1" optionState="T">
             <!-- Harborn band -->
             <a-image src="#harborn_band" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
             <!-- <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
@@ -217,7 +218,7 @@
         </a-marker>
 
         <!-- Focus area info marker -->
-        <a-marker type='barcode' value='55' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='55' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1" optionState="T">
             <!-- Harborn band -->
             <a-image src="#harborn_focus_wide" height="3" width="3" position="-2 0 -1.5" rotation="-90 0 0"></a-image>
             <!-- <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane> -->
@@ -242,7 +243,7 @@
         </a-marker>
 
         <!-- Rebranding info marker -->
-        <a-marker type='barcode' value='6' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='6' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1" optionState="T">
             <!-- Harborn band -->
             <a-image src="#CH_logo" height="1" width="2.8" position="-1.9 0 -1.5" rotation="-90 0 0"></a-image>
             <a-plane height="3" width="3" position="-1.9 -0.25 -1.4" rotation="-90 0 0" color="#122124"></a-plane>
@@ -269,7 +270,7 @@
         <!-- Logo wall marker -->
         <a-marker id="logo_marker" markerhandler type='barcode' value='21' smooth="true" smoothCount="10"
             smoothTolerance="0.005" smoothThreshold="1" raycaster="objects: .interactable" emitevents="true"
-            gesture-handler cursor="fuse: false; rayOrigin: mouse;">
+            gesture-handler cursor="fuse: false; rayOrigin: mouse;" optionState="OT">
             <!-- Logo -->
             <a-plane height="3" width="3" position="0 -0.25 -3" rotation="-90 0 0" color="#122124" id="image_plane"
                 visible="false">
@@ -285,6 +286,12 @@
                     font="https://raw.githubusercontent.com/TCBergsma/Harborn_font_resources/main/Space%20Grotesk%20Black%20Medium.fnt">
                 </a-text>
             </a-plane> -->
+
+            <a-entity id="logo_wall_model_left" gltf-model="#container_green" position="2.4 0 -2" rotation="45 -90 90" scale="0.025 0.025 0.025">
+            </a-entity>
+            <a-entity id="logo_wall_model_right" gltf-model="#container_yellow" position="-2.2 0 -2" rotation="135 -90 90" scale="0.003 0.003 0.003">
+            </a-entity>
+
             <a-entity geometry="primitive:plane;width:2;height:1;" position="0 0 -1.5" rotation="-90 0 0" gif
                 material="shader:gif;src:#swiping;" id="swiping_gif"></a-entity>
 
@@ -301,7 +308,7 @@
         </a-marker>
 
         <!-- Harborn logo marker -->
-        <a-marker type='barcode' value='17' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='17' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1" optionState="OH">
             <a-entity id="harborn_logo_gltf" gltf-model="#harborn_logo" position="0 0.5 -2" rotation="0 90 90">
             </a-entity>
             <a-entity id="harborn_logo_outlined_gltf" gltf-model="#harborn_logo_outlined" position="0 0.5 -2"
@@ -311,7 +318,7 @@
         </a-marker>
 
         <!-- Door marker -->
-        <a-marker type='barcode' value='14' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='14' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1" optionState="O">
             <a-entity id="door_gltf" gltf-model="#door" position="0 0.5 -5" rotation="90 90 90" scale="0.05 0.05 0.05">
             </a-entity>
             <a-entity id="door_outlined_gltf" gltf-model="#door_outlined" position="0 0.5 -5" rotation="90 90 90"
@@ -319,7 +326,7 @@
         </a-marker>
 
         <!-- Football marker -->
-        <a-marker type='barcode' value='33' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='33' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1" optionState="O">
             <a-entity id="football_gltf" gltf-model="#football" position="0 0 -1" rotation="-90 90 90">
             </a-entity>
             <a-entity id="football_outlined_gltf" gltf-model="#football_outlined" position="0 0 -1" rotation="-90 90 90"
@@ -327,7 +334,7 @@
         </a-marker>
 
         <!-- Smiley marker -->
-        <a-marker type='barcode' value='34' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1">
+        <a-marker type='barcode' value='34' smooth="true" smoothCount="10" smoothTolerance="0.005" smoothThreshold="1" optionState="O">
             <a-entity id="smiley_gltf" gltf-model="#smiley" position="0 0.5 0.5" rotation="-90 0 0" scale="1.5 1.5 1.5">
             </a-entity>
             <a-entity id="smiley_outlined_gltf" gltf-model="#smiley_outlined" position="0 0.5 0.5" rotation="-90 0 0"
