@@ -276,7 +276,7 @@ var brands = [      //Info on all the brands
     },
     {
         name: "iTanks",
-        description: "iTanks is a knowledge and innovation platform for the port-related industry. An industry with enormous innovation potential. They connect companies, knowledge institutes and industry experts and introduce these parties with new technology and the latest innovations from within and outside the sector. In addition, their strength lies in the renewal of the port-related industry. There is an enormous amount of knowledge and expertise available, the application areas of which are not yet (optimally) used for industry.",
+        description: "iTanks is a knowledge and innovation platform for the port-related industry. An industry with enormous innovation potential. They connect companies, knowledge institutes and industry experts.",
         image: "#itanks_logo",
         gltf_left: "",
         gltf_left_pos: '2.4 0 -2',
@@ -635,9 +635,9 @@ function removeSwipingGIF() {
 
         // Set brand details
         brandBackground.setAttribute('height', '2.5');
-        brandBackground.setAttribute('width', '3');
+        brandBackground.setAttribute('width', '5');
         brandBackground.setAttribute('position', '0 0 0');
-        brandName.setAttribute('position', '-1.35 1 0.2');
+        brandName.setAttribute('position', '-2.2 1 0.2');
     }, 500);
 }
 
