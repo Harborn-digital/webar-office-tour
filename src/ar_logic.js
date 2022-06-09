@@ -45,6 +45,8 @@ import Door from '../media/gltf/testing/Door.gltf';
 import DoorBin from '../media/gltf/testing/Door.bin';
 import DoorOutline from '../media/gltf/testing/Door_Outlined.gltf';
 import DoorOutlineBin from '../media/gltf/testing/Door_Outlined.bin';
+import DoorHighlight from '../media/gltf/testing/Door_Highlighted.gltf';
+import DoorHighlightBin from '../media/gltf/testing/Door_Highlighted.bin';
 import Football from '../media/gltf/testing/Football.gltf';
 import FootballBin from '../media/gltf/testing/Football.bin';
 import FootballOutline from '../media/gltf/testing/Football_Outlined.gltf';
@@ -59,44 +61,35 @@ let highlightState = false;
 
 hideSubOptions();
 
-function toggleOutline(status) {
+function toggleOutline(status, normalModel, outlinedModel) {
+    let element = document.querySelector('#' + normalModel);
+    let elementOutline = document.querySelector('#' + outlinedModel);
+
     if (status) {
-        document.getElementById('harborn_logo_gltf').object3D.visible = false;
-        document.getElementById('harborn_logo_outlined_gltf').object3D.visible = true;
-
-        document.getElementById('door_gltf').object3D.visible = false;
-        document.getElementById('door_outlined_gltf').object3D.visible = true;
-
-        document.getElementById('football_gltf').object3D.visible = false;
-        document.getElementById('football_outlined_gltf').object3D.visible = true;
-
-        document.getElementById('smiley_gltf').object3D.visible = false;
-        document.getElementById('smiley_outlined_gltf').object3D.visible = true;
+        element.object3D.visible = false;
+        elementOutline.object3D.visible = true;
+    }
+    else if ((!status && !element) || (!status && !elementOutline)) {
+        //Do nothing
     }
     else {
-        document.getElementById('harborn_logo_gltf').object3D.visible = true;
-        document.getElementById('harborn_logo_outlined_gltf').object3D.visible = false;
-
-        document.getElementById('door_gltf').object3D.visible = true;
-        document.getElementById('door_outlined_gltf').object3D.visible = false;
-
-        document.getElementById('football_gltf').object3D.visible = true;
-        document.getElementById('football_outlined_gltf').object3D.visible = false;
-
-        document.getElementById('smiley_gltf').object3D.visible = true;
-        document.getElementById('smiley_outlined_gltf').object3D.visible = false;
+        element.object3D.visible = true;
+        elementOutline.object3D.visible = false;
     }
 }
 
-function toggleHighlight(status) {
-    let element = document.querySelector('#harborn_logo_gltf');
-    let elementHighlight = document.querySelector('#harborn_logo_highlighted_gltf');
+function toggleHighlight(status, normalModel, highlightedModel) {
+    let element = document.querySelector('#' + normalModel);
+    let elementHighlight = document.querySelector('#' + highlightedModel);
 
     if (status) {
         element.object3D.visible = false;
         elementHighlight.object3D.visible = true;
         elementHighlight.setAttribute('animation', 'property: scale; dur: 1500; from: 1 1 1; to: 1.5 1.5 1.5; loop: true; dir: alternate; easing: easeInOutQuad');
         elementHighlight.setAttribute('animation__position', 'property: position; dur: 1500; from: 0 0.5 -1.5; to: 0 0.5 -2.25; loop: true; dir: alternate; easing: easeInOutQuad');
+    }
+    else if ((!status && !element) || (!status && !elementHighlight)) {
+        //Do nothing
     }
     else {
         element.object3D.visible = true;
@@ -105,13 +98,24 @@ function toggleHighlight(status) {
     }
 }
 
-
 function switchOption(element) {
     var chosenOption = element.attr('optionClass');
+
     if (element.attr('class').includes('selected')) {
         //Turn off all effects
-        toggleOutline(false);
-        toggleHighlight(false);
+        toggleOutline(false, normalModelId, outlinedModelId);
+        toggleHighlight(false, normalModelId, highlightedModelId);
+
+        if (document.querySelectorAll('#' + markerId + ' .interactable').length > 0) {
+            if (markerEl.children.length == 2 || markerEl.children.length == 3) {
+                interactableEl = document.querySelectorAll('#' + markerId + ' .interactable')[1];
+            }
+            else {
+                interactableEl = document.querySelectorAll('#' + markerId + ' .interactable')[0];
+            }
+        }
+
+        interactableEl = document.querySelectorAll('#' + markerId + ' .interactable')[0];
 
         // Hide color options
         hideSubOptions();
@@ -122,28 +126,49 @@ function switchOption(element) {
         element.addClass('selected').siblings().removeClass('selected');
 
         if (chosenOption === "outline") {
-            toggleOutline(true);
+            toggleOutline(true, normalModelId, outlinedModelId);
 
-            toggleHighlight(false);
+            toggleHighlight(false, normalModelId, highlightedModelId);
             // removeInterval();
+
+            if (document.querySelectorAll('#' + markerId + ' .interactable').length > 0) {
+                if (markerEl.children.length == 2 || markerEl.children.length == 3) {
+                    document.querySelectorAll('#' + markerId + ' .interactable')[0].object3D.visible = false;
+                    interactableEl = document.querySelectorAll('#' + markerId + ' .interactable')[1];
+                }
+                else {
+                    interactableEl = null;
+                }
+            }
 
             // Hide color options
             hideSubOptions();
         }
         if (chosenOption === "textColor") {
-            toggleOutline(false);
+            toggleOutline(false, normalModelId, outlinedModelId);
 
-            toggleHighlight(false);
+            toggleHighlight(false, normalModelId, highlightedModelId);
             // removeInterval();
+
+            interactableEl = null;
 
             // Show color options
             $('[class*=accessibility_color]').show();
             $('[class=accessibility_sub_line]').show();
         }
         if (chosenOption === "highlight") {
-            toggleOutline(false);
+            toggleOutline(false, normalModelId, outlinedModelId);
 
-            toggleHighlight(true);
+            toggleHighlight(true, normalModelId, highlightedModelId);
+
+            if (document.querySelectorAll('#' + markerId + ' .interactable').length > 0) {
+                if (markerEl.children.length == 3) {
+                    interactableEl = document.querySelectorAll('#' + markerId + ' .interactable')[2];
+                }
+            }
+            else {
+                interactableEl = null;
+            }
 
             // Hide color options
             hideSubOptions();
@@ -198,7 +223,8 @@ $('[class*=accessibility_selection]').keypress(function (e) {
 
 // Set logo wall variables
 var isMarkerVisible = false;
-var rotationFactor = 5;
+var rotationFactor = 15;
+var swipeFactor = 5;
 var amountRotated = 0;
 var brandPosition = -1;     //-1 So on the first swipe it steps up to 0, a.k.a the first item in the brands list
 var firstSwipeDone = false;
@@ -311,16 +337,52 @@ const containerButtons = document.getElementById('container-buttons');
 const leftButton = document.getElementById('left-button');
 const rightButton = document.getElementById('right-button');
 var isLogoWallVisible = false;
+var markerEl = null;
+var interactableEl = null;
+var markerId;
+
+var normalModelId;
+var outlinedModelId;
+var highlightedModelId;
 
 sceneEl.addEventListener("onefingermove", handleRotation);              //Checks swiping on the canvas
 
 sceneEl.addEventListener("markerFound", (e) => {                        //Checks if marker is being scanned
     isMarkerVisible = true;
+    markerId = e.target.getAttribute("id");
     setOptionStates(e.target.attributes.optionState.value);
 
     if (e.target.attributes.value.nodeValue == 21) {
         isLogoWallVisible = true;
         showLogoWallButtons();
+    }
+
+    if (document.querySelectorAll('#' + markerId + ' .interactable').length > 0) {
+        markerEl = document.querySelectorAll('#' + markerId)[0];
+        interactableEl = document.querySelectorAll('#' + markerId + ' .interactable')[0];
+
+        //Reset ID's for new marker
+        normalModelId = null;
+        outlinedModelId = null;
+        highlightedModelId = null;
+
+        //Set all ID's for marker children
+        if (markerEl.children.length == 1) {
+            normalModelId = markerEl.children[0].getAttribute('id');
+        }
+        if (markerEl.children.length == 2) {
+            normalModelId = markerEl.children[0].getAttribute('id');
+            outlinedModelId = markerEl.children[1].getAttribute('id');
+        }
+        if (markerEl.children.length == 3) {
+            normalModelId = markerEl.children[0].getAttribute('id');
+            outlinedModelId = markerEl.children[1].getAttribute('id');
+            highlightedModelId = markerEl.children[2].getAttribute('id');
+        }
+    }
+    else {
+        markerEl = null;
+        interactableEl = null;
     }
 });
 
@@ -357,13 +419,13 @@ const outlineOption = $('#outline');
 const textColorOption = $('#textColor');
 const highlightOption = $('#highlight');
 
-function hideLogoWallButtons(){
+function hideLogoWallButtons() {
     containerButtons.style.visibility = "hidden";
     leftButton.style.visibility = "hidden";
     rightButton.style.visibility = "hidden";
 }
 
-function showLogoWallButtons(){
+function showLogoWallButtons() {
     containerButtons.style.visibility = "visible";
     leftButton.style.visibility = "visible";
     rightButton.style.visibility = "visible";
@@ -429,8 +491,8 @@ function setOptionStates(markerStateInfo) {
             highlightOption.removeClass('selected');
 
             //Turn off all effects
-            toggleOutline(false);
-            toggleHighlight(false);
+            toggleOutline(false, normalModelId, outlinedModelId);
+            toggleHighlight(false, normalModelId, highlightedModelId);
 
             break;
     }
@@ -448,7 +510,7 @@ function handleRotation(e) {
             amountRotated = 0;
         }, 2000);
 
-        amountRotated += e.detail.positionChange.x * rotationFactor;    //Set amount swiped
+        amountRotated += e.detail.positionChange.x * swipeFactor;    //Set amount swiped
         // console.log("Amount rotated: " + amountRotated);
 
         if (amountRotated >= 1 && firstSwipeDone) {
@@ -469,6 +531,9 @@ function handleRotation(e) {
             removeSwipingGIF();
             switchBrand(1);
         }
+    }
+    if (isMarkerVisible && interactableEl !== null) {
+        interactableEl.object3D.rotation.x += e.detail.positionChange.y * rotationFactor;
     }
 }
 
@@ -511,7 +576,7 @@ function animateBrandChange(rotationDirection) {
 function changeBrandData(position) {
     let tempName = brands[position].name;       //Get info from the JSON list
     let tempDescription = brands[position].description;
-    let tempImage = brands[position].image; 
+    let tempImage = brands[position].image;
     let tempLeftGltf = brands[position].gltf_left;
     let tempLeftPos = brands[position].gltf_left_pos;
     let tempLeftRot = brands[position].gltf_left_rot;
@@ -523,13 +588,13 @@ function changeBrandData(position) {
     let tempRightScale = brands[position].gltf_right_scale;
     let tempRightAnim = brands[position].gltf_right_anim;
 
-    if(position == 0){
+    if (position == 0) {
         leftButton.style.visibility = "hidden";
     }
-    else if(position == brands.length -1){
+    else if (position == brands.length - 1) {
         rightButton.style.visibility = "hidden";
     }
-    else{
+    else {
         leftButton.style.visibility = "visible";
         rightButton.style.visibility = "visible";
     }
@@ -538,9 +603,9 @@ function changeBrandData(position) {
         brandImage.setAttribute('src', tempImage);
         brandName.setAttribute('value', tempName);
         brandDescription.setAttribute('value', tempDescription);
-        console.log(leftModel.getAttribute('gltf-model'));    
+        // console.log(leftModel.getAttribute('gltf-model'));
         leftModel.setAttribute('gltf-model', tempLeftGltf);
-        console.log(leftModel.getAttribute('gltf-model'));
+        // console.log(leftModel.getAttribute('gltf-model'));
         // leftModel.setAttribute('position', tempLeftPos);
         leftModel.setAttribute('rotation', tempLeftRot);
         leftModel.setAttribute('scale', tempLeftScale);
@@ -549,7 +614,7 @@ function changeBrandData(position) {
         rightModel.setAttribute('rotation', tempRightRot);
         rightModel.setAttribute('scale', tempRightScale);
 
-        if(tempRightAnim == 'add'){
+        if (tempRightAnim == 'add') {
             rightModel.setAttribute('animation-mixer', 'clip: Animation');
         }
 
